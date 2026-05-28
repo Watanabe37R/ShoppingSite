@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログアウト</title>
 </head>
 <body>
-
+	<p>ログアウトしますか？</p>
+	<p><a href="${pageContext.request.contextPath}/Logout.action">ログアウト</a></p>
 </body>
 </html>
