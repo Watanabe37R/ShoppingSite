@@ -9,7 +9,7 @@
 <body>
 	<h2>こんにちは、${sessionScope.loginuser.lastName}さん！</h2>
 	<p>三秒後に戻ります</p>
-	<meta http-equiv="refresh" content="3;url=top.jsp">
-	<p><a href="top.jsp">すぐ戻る</a></p>
+	<meta http-equiv="refresh" content="3;url=user-menu.jsp">
+	<p><a href="user-menu.jsp">すぐ戻る</a></p>
 </body>
 </html>

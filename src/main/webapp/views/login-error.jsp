@@ -8,6 +8,9 @@
 </head>
 <body>
 <h2>ログインに失敗しました。</h2>
-ユーザー名またはパスワードが違います。
+${loginerrormessage}
+	<p>１０秒後に戻ります</p>
+	<meta http-equiv="refresh" content="10;url=${pageContext.request.contextPath}/views/user-menu.jsp">
+	<p><a href="${pageContext.request.contextPath}/views/user-menu.jsp">すぐ戻る</a></p>
 </body>
 </html>

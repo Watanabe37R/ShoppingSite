@@ -8,5 +8,8 @@
 </head>
 <body>
 すでにログアウト済みです。
+	<p>三秒後に戻ります</p>
+	<meta http-equiv="refresh" content="3;url=${pageContext.request.contextPath}/views/user-menu.jsp">
+	<p><a href="${pageContext.request.contextPath}/views/user-menu.jsp">すぐ戻る</a></p>
 </body>
 </html>
