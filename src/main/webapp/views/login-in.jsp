@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/membersstyle.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +9,17 @@
 <title>ログイン</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/Login.action" method="post">
-		<h2>ログイン情報を入力してください</h2>
-		<p>ログインID<input type="text" name="id"></p>
-		<p>パスワード<input type="password" name="pw"></p>
-		<input type="submit" value="ログイン">
-	</form>
+	<Div class="form">
+		<form action="${pageContext.request.contextPath}/Login.action" method="post">
+			<h2>ログイン情報を入力してください</h2>
+			<p>ログインID<input type="text" name="id"></p>
+			<p>パスワード<input type="password" name="pw"></p>
+			<input type="submit" value="ログイン">
+		</form>
+		<hr>
+		<form action="${pageContext.request.contextPath}/Registration.action" method="post">
+			<input type="submit" value="新規登録">
+		</form>
+	</Div>
 </body>
 </html>

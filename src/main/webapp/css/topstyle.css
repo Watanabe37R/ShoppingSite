@@ -1,33 +1,55 @@
 @charset "UTF-8";
 
-.header {
-  display: grid;
-  grid-template-rows: auto auto;
-  border-bottom: 2px solid #333;
+body{
+	background-color: azure;
 }
 
+header {
+	display: grid;
+	grid-template-rows: auto auto;
+	border-bottom: 2px solid #333;
+	background-color: #00aaff;
+}
+
+/*上段*/
+.upper {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	border-bottom: 2px solid #333;
+}
+
+/* 左右 */
 /* タイトル */
-.title {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 2px solid #333;
+.upper .title {
+	padding: 15px;
+	/*text-align: center;*/
+	text-align: center;
+}
+
+/*コンテンツ*/
+.upper .contents {
+	padding: 15px;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+
 }
 
 /* 下段（共通） */
 .bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 /* 左右 */
 .bottom .left {
-  padding: 10px;
-  border-right: 2px solid #333;
-  text-align: center;
+	padding: 10px;
+	border-right: 2px solid #333;
+	text-align: center;
 }
 
 .bottom .right {
-  padding: 10px;
-  text-align: center;
+	padding: 10px;
+	text-align: center;
 }
-

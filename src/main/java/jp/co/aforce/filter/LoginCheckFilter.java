@@ -43,6 +43,14 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 
 		String sp = path.substring(req.getContextPath().length());
 
+		//静的ファイルは通す
+		if (sp.startsWith("/css") ||
+				sp.startsWith("/js") ||
+				sp.startsWith("/images")) {
+			chain.doFilter(request, response);
+			return;
+		}
+
 		// 通す条件（ホワイトリスト）
 		boolean allow = sp.startsWith("/Login")
 				|| sp.startsWith("/views/login")
@@ -57,7 +65,7 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 			chain.doFilter(request, response);
 			return;
 		}
-		
+
 		//それ以外で
 		//ログインしてなければtopへ
 		if (!loginStatus) {
