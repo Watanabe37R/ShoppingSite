@@ -7,6 +7,6 @@
 <title>ログイン完了</title>
 </head>
 <body>
-	<h2>こんにちは、${sessionScope.loginuser.memberId}さん！</h2>
+	<h2>こんにちは、${sessionScope.loginuser.lastName}さん！</h2>
 </body>
 </html>

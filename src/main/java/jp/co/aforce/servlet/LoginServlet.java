@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import jp.co.aforce.action.LoginAction;
-import jp.co.aforce.bean.Users;
 
 /**
  * Servlet implementation class LoginServlet
@@ -24,12 +23,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
-		Users user =new Users();
-		user.setMemberId(id);
-		user.setPassword(pw);
-		request.setAttribute("user", user);
 		LoginAction action =new LoginAction();
 		String pass;
 		try {

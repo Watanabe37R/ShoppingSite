@@ -7,6 +7,6 @@
 <title>管理者：ログイン完了</title>
 </head>
 <body>
-<h2>こんにちは、管理者：${sessionScope.loginuser.memberId}さん！</h2>
+<h2>こんにちは、管理者：${sessionScope.loginuser.lastName}さん！</h2>
 </body>
 </html>
