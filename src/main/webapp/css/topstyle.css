@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.header {
+  display: grid;
+  grid-template-rows: auto auto;
+  border-bottom: 2px solid #333;
+}
+
+/* タイトル */
+.title {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 2px solid #333;
+}
+
+/* 下段（共通） */
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* 左右 */
+.bottom .left {
+  padding: 10px;
+  border-right: 2px solid #333;
+  text-align: center;
+}
+
+.bottom .right {
+  padding: 10px;
+  text-align: center;
+}
+

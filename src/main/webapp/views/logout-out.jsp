@@ -7,8 +7,10 @@
 <title>ログアウト完了</title>
 </head>
 <body>
-ログアウトしました。
-
+	<h2>ログアウトしました。</h2>
+	<p>三秒後に戻ります</p>
+	<meta http-equiv="refresh" content="3;url=top.jsp">
+	<p><a href="top.jsp">すぐ戻る</a></p>
 
 </body>
 </html>
