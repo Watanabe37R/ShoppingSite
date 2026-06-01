@@ -12,11 +12,13 @@
 	<Div class="form">
 		<form action="${pageContext.request.contextPath}/Login.action" method="post">
 			<h2>ログイン情報を入力してください</h2>
-			<p>ログインID<input type="text" name="id"></p>
-			<p>パスワード<input type="password" name="pw"></p>
+			<p>ログインID<input type="text" name="id" required></p>
+			<p>パスワード<input type="password" name="pw" required></p>
+			<input type="hidden" name="force" value="${param.force}">
 			<input type="submit" value="ログイン">
 		</form>
 		<hr>
+		始めてご利用の方
 		<form action="${pageContext.request.contextPath}/Registration.action" method="post">
 			<input type="submit" value="新規登録">
 		</form>

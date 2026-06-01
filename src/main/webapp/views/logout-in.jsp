@@ -12,6 +12,7 @@
 	<Div class="form">
 		<p>ログアウトしますか？</p>
 		<p><a href="${pageContext.request.contextPath}/Logout.action">ログアウト</a></p>
+		<p><a href="user-menu.jsp">戻る</a></p>
 	</Div>
 </body>
 </html>

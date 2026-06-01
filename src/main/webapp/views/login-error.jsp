@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <link rel="stylesheet"
+	pageEncoding="UTF-8"%>
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/membersstyle.css">
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +13,24 @@
 	<Div class="form">
 		<h2>ログインに失敗しました。</h2>
 		${loginerrormessage}
-		<p>１０秒後に戻ります</p>
-		<meta http-equiv="refresh" content="10;url=${pageContext.request.contextPath}/views/login-in.jsp">
-		<p><a href="${pageContext.request.contextPath}/views/login-in.jsp">すぐ戻る</a></p>
+		<c:choose>
+			<c:when test="${requestScope.errorType=='sessionConflict'}">
+				<p>
+					<a href="${pageContext.request.contextPath}/views/login-in.jsp">ログイン画面に戻る</a>
+				</p>
+
+
+				<a
+					href="${pageContext.request.contextPath}/views/login-in.jsp?force=true">
+					強制ログインを行う </a>
+
+			</c:when>
+			<c:otherwise>
+				<p>
+					<a href="${pageContext.request.contextPath}/views/login-in.jsp">ログイン画面に戻る</a>
+				</p>
+			</c:otherwise>
+		</c:choose>
 	</Div>
 </body>
 </html>

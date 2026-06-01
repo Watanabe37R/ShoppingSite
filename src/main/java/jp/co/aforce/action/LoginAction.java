@@ -15,13 +15,15 @@ public class LoginAction extends Action {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		
+
 		//空文字チェック
 		if (id == null || id.trim().isEmpty()) {
+			request.setAttribute("errorType", "normal");
 			request.setAttribute("loginerrormessage", "ユーザIDが空白です。");
 			return "login-error.jsp";
 		}
 		if (pw == null || pw.trim().isEmpty()) {
+			request.setAttribute("errorType", "normal");
 			request.setAttribute("loginerrormessage", "パスワードが空白です。");
 			return "login-error.jsp";
 		}
@@ -29,10 +31,28 @@ public class LoginAction extends Action {
 		UsersDAO dao = new UsersDAO();
 		Users loginuser = dao.search(id, pw);
 
+		boolean force = "true".equals(request.getParameter("force"));
 		if (loginuser != null) {
 			if (UserFrontController.usersSession.containsKey(id)) {
-				request.setAttribute("loginerrormessage", "他のブラウザでログインをしているため、ログイン処理を中断いたしました。<br>ログアウトしてからご利用ください。");
-				return "login-error.jsp";
+				//旧セッション
+				HttpSession oldSession = UserFrontController.usersSession.get(id);
+				//強制ログインではない場合
+				if (!force) {
+					request.setAttribute("loginerrormessage",
+							"他のブラウザでログインをしているため、ログイン処理を中断いたしました。"
+									+ "<br>当該ブラウザでログアウトするか、強制ログインを行ってください"
+									+ "<br>※強制ログインを行うと、現在のログイン状態を解除いたします。");
+					request.setAttribute("errorType", "sessionConflict");
+					return "login-error.jsp";
+				}
+				//旧セッションがあるなら殺す
+				if (oldSession != null) {
+					try {
+						oldSession.invalidate();
+					} catch (IllegalStateException e) {
+						// 既に死んでるなら無視
+					}
+				}
 			}
 			UserFrontController.usersSession.put(id, session);
 			session.setAttribute("loginuser", loginuser);
@@ -42,6 +62,7 @@ public class LoginAction extends Action {
 				return "login-out-manager.jsp";
 			}
 		}
+		request.setAttribute("errorType", "normal");
 		request.setAttribute("loginerrormessage", "ユーザIDかパスワードが間違っています。");
 		return "login-error.jsp";
 	}

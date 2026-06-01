@@ -10,48 +10,51 @@
 <title>会員情報登録ホーム</title>
 </head>
 <body>
-	<header>
-		<div class="upper">
-			<div class="title">
-				<h2>ログイン実装</h2>
-			</div>
-			<div class="contents">
-				<c:choose>
-					<c:when test="${not empty sessionScope.loginuser}">
-						<c:choose>
-							<c:when test="${loginuser.manager == 1}">
-								<a href="#">お知らせ</a>｜<a href="#">管理情報</a>
-							</c:when>
-							<c:otherwise>
-								<a href="#">お知らせ</a>｜<a href="#">カート</a>｜<a href="#">会員情報</a>
-							</c:otherwise>
-						</c:choose>
-					</c:when>
-					<c:otherwise>
-						<a href="#">お知らせ</a>
-					</c:otherwise>
-				</c:choose>
-			</div>
+	<header class="top-header-layout">
+
+		<%--左：タイトル--%>
+		<div class="title">
+			<h2>ログイン実装</h2>
 		</div>
 
-		<c:choose>
-			<c:when test="${empty sessionScope.loginuser}">
-				<div class="bottom">
-					<div class="left">
-						<a href="login-in.jsp">ログイン</a>
+		<%--中央：検索(管理者以外)--%>
+		<div class="search">
+			<c:if
+				test="${empty sessionScope.loginuser || loginuser.manager != 1}">
+				<form action="search" method="post">
+					<input type="text" name="name">
+					<input type="submit" value="検索">
+				</form>
+			</c:if>
+		</div>
+
+		<%--ユーザー名+メニュー--%>
+		<div class="contents">
+			<c:choose>
+				<c:when test="${not empty sessionScope.loginuser}">
+					<span class="user-name"> ようこそ、${loginuser.lastName}さん </span>
+					<c:choose>
+						<c:when test="${loginuser.manager == 1}">
+							<div class="menu">
+								<a href="#">お知らせ</a> <a href="#">管理情報</a>
+								<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="menu">
+								<a href="#">お知らせ</a> <a href="#">カート</a> <a href="#">会員情報</a>
+								<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+				<c:otherwise>
+					<div class="menu">
+						<a href="login-in.jsp" class="btn-highlight">ログイン</a> <a href="#" class="btn-highlight">新規登録</a>
 					</div>
-					<div class="right"><a href="#">新規登録</a></div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="bottom">
-					<div class="left">ようこそ、${sessionScope.loginuser.lastName}さん！</div>
-					<div class="right">
-						<a href="logout-in.jsp">ログアウト</a>
-					</div>
-				</div>
-			</c:otherwise>
-		</c:choose>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</header>
 	<main>
 		<c:choose>

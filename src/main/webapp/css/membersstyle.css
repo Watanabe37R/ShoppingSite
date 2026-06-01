@@ -7,7 +7,7 @@ body {
 
 /* フォームを中央に */
 .form {
-  width: 300px;
+  width: 500px;
   margin: 100px auto; /* 中央寄せ */
   padding: 20px;
   background-color: white;
@@ -36,8 +36,8 @@ input[type="password"] {
 input[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #00aaff;
-  color: white;
+  background-color: rgb(252, 197, 95);
+  color:black;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -45,5 +45,24 @@ input[type="submit"] {
 
 /* ボタンホバー */
 input[type="submit"]:hover {
+  background-color: rgb(251, 167, 11);
+}
+
+/* リンク */
+a {
+  width: 100%;
+  padding: 10px;
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* リンクホバー */
+a:hover {
   background-color: #0088cc;
 }

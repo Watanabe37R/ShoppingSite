@@ -1,55 +1,131 @@
 @charset "UTF-8";
 
-body{
-	background-color: azure;
+/* ===== 全体 ===== */
+body {
+	margin: 0;
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: linear-gradient(0deg, #eef6fb, #dbe9f4);
+	padding: 20px;
 }
 
-header {
+/* ===== ヘッダー全体 ===== */
+.top-header-layout {
 	display: grid;
-	grid-template-rows: auto auto;
-	border-bottom: 2px solid #333;
-	background-color: #00aaff;
+	grid-template-columns: 1fr auto 2fr;
+	align-items: center;
+	background: linear-gradient(135deg, #006d99, #0099cc);
+	color: white;
+	padding: 12px 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/*上段*/
-.upper {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	border-bottom: 2px solid #333;
+/* ===== 左：タイトル ===== */
+.title {
+	justify-self: start;
 }
 
-/* 左右 */
-/* タイトル */
-.upper .title {
-	padding: 15px;
-	/*text-align: center;*/
-	text-align: center;
+.title h2 {
+	margin: 0;
+	font-size: 20px;
 }
 
-/*コンテンツ*/
-.upper .contents {
-	padding: 15px;
+/* ===== 中央：検索 ===== */
+.search {
+	justify-self: center;
+}
 
+/*検索ボックス全体*/
+.search form {
 	display: flex;
-	justify-content: flex-end;
-	align-items: flex-end;
-
+	align-items: center;
+	margin: 0;
 }
 
-/* 下段（共通） */
-.bottom {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+/* 検索入力 */
+.search input[type="text"] {
+	border-radius: 20px 0 0 20px;
+	border: none;
+	outline: none;
+	width: 280px;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 10px;
 }
 
-/* 左右 */
-.bottom .left {
-	padding: 10px;
-	border-right: 2px solid #333;
-	text-align: center;
+/* 検索ボタン */
+.search input[type="submit"] {
+	padding: 6px 12px;
+	border-radius: 0 20px 20px 0;
+	border: none;
+	background-color: #004e6b;
+	color: white;
+	cursor: pointer;
+	transition: 0.2s;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 10px;
 }
 
-.bottom .right {
-	padding: 10px;
-	text-align: center;
+.search input[type="submit"]:hover {
+	background-color: #003b52;
+}
+
+/* ===== 右：ユーザー＋メニュー ===== */
+.contents {
+	justify-self: end;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+/* ユーザー名 */
+.user-name {
+	font-size: 14px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+/* メニュー */
+.menu {
+	display: flex;
+	gap: 10px;
+}
+
+/* リンクをボタン風 */
+.menu a {
+	padding: 6px 12px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.25);
+	color: white;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	text-decoration: none;
+	font-size: 13px;
+	transition: 0.2s;
+}
+
+.menu a:hover {
+	background: rgba(255, 255, 255, 0.45);
+}
+
+/* 強調したいボタン類 */
+.menu .btn-highlight {
+	background: rgb(252, 197, 95);
+	color: #0077aa;
+	text-shadow: none; 
+	font-weight: bold;
+}
+
+.menu .btn-highlight:hover {
+	background: rgb(251, 167, 11);
+}
+
+
+/* ===== メインエリア ===== */
+main {
+	margin-top: 20px;
+	background: white;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
