@@ -66,3 +66,20 @@ a {
 a:hover {
   background-color: #0088cc;
 }
+
+.names {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 20px;
+}
+
+.names input {
+  width: 100%;
+}
+
+.buttons{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 5px 20px;
+}
+

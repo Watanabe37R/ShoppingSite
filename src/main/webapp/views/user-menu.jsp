@@ -14,7 +14,7 @@
 
 		<%--左：タイトル--%>
 		<div class="title">
-			<h2>ログイン実装</h2>
+			<h2>EC-Site</h2>
 		</div>
 
 		<%--中央：検索(管理者以外)--%>
@@ -50,7 +50,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="menu">
-						<a href="login-in.jsp" class="btn-highlight">ログイン</a> <a href="#" class="btn-highlight">新規登録</a>
+						<a href="login-in.jsp" class="btn-highlight">ログイン</a> <a href="registration-in.jsp" class="btn-highlight">新規登録</a>
 					</div>
 				</c:otherwise>
 			</c:choose>
