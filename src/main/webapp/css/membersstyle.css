@@ -62,9 +62,18 @@ a {
   box-sizing: border-box;
 }
 
+a.main{
+	background-color: rgb(252, 197, 95);
+	color:black;
+}
+
 /* リンクホバー */
 a:hover {
   background-color: #0088cc;
+}
+
+a.main:hover{
+	background-color: rgb(251, 167, 11);
 }
 
 .names {
@@ -75,6 +84,28 @@ a:hover {
 
 .names input {
   width: 100%;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #00aaff;
+  color:white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.main{
+	background-color: rgb(252, 197, 95);
+	color:black;
+}
+
+button[type="submit"]:hover {
+  background-color: #0088cc;
+}
+button.main:hover{
+	background-color: rgb(251, 167, 11);
 }
 
 .buttons{

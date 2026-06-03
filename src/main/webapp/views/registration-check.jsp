@@ -23,7 +23,7 @@
 			</Div>
 			<p>住所<input type="text" name="address" value="${setUser.address}" readonly></p>
 			<div class="buttons">
-				<button type="submit" name="mode" value="register">登録</button>
+				<button type="submit" class="main" name="mode" value="register">登録</button>
 	 			<button type="submit" name="mode" value="back">修正</button>
 	 			<button type="submit" name="mode" value="cancel">取消</button>
 			</div>

@@ -32,7 +32,7 @@ public class UsersDAO extends DAO {
 		}
 		return loginUser;
 	}
-	
+
 	/*
 	 * ID,PW重複チェック。登録、更新で使用
 	 */
@@ -45,29 +45,58 @@ public class UsersDAO extends DAO {
 			ps.setString(1, id);
 			ps.setString(2, mail);
 			try (ResultSet rs = ps.executeQuery();) {
-				while (rs.next()) {					
+				while (rs.next()) {
 					//IDが重複しているとき
 					if (id.equals(rs.getString("MEMBER_ID"))) {
-						duplicateID=true;
+						duplicateID = true;
 					}
 					//メアドが重複しているとき
 					if (mail.equals(rs.getString("MAIL_ADDRESS"))) {
-						duplicateMail=true;
+						duplicateMail = true;
 					}
 				}
 			}
 		}
 		//受け取り側でswitchする
-		if(duplicateID&&duplicateMail) {
+		if (duplicateID && duplicateMail) {
 			return DuplicateResult.BOTH_DUPLICATE;
 		}
-		if(duplicateID) {
+		if (duplicateID) {
 			return DuplicateResult.ID_DUPLICATE;
 		}
-		if(duplicateMail) {
+		if (duplicateMail) {
 			return DuplicateResult.MAIL_DUPLICATE;
 		}
 		return DuplicateResult.OK;
+	}
+	/*
+	 * ユーザ情報登録処理。入力値を全てDBへ
+	 * 但し、今はまだ一般ユーザ用。
+	 */
+	public int registration(Users setUser) throws Exception {
+		int line = 0;
+		
+		String id = setUser.getMemberId();
+		String pw = setUser.getPassword();
+		String lname = setUser.getLastName();
+		String fname = setUser.getFirstName();
+		String address = setUser.getAddress();
+		String mail = setUser.getMailAddress();
+		
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(
+						"INSERT INTO users(MEMBER_ID,PASSWORD,LAST_NAME,FIRST_NAME,ADDRESS,MAIL_ADDRESS,MANAGER) VALUES (?, ?, ?, ?, ?, ?, 0)");) {
+			ps.setString(1,id);
+			ps.setString(2,pw);
+			ps.setString(3, lname);
+			ps.setString(4, fname);
+			ps.setString(5, address);
+			ps.setString(6, mail);
+			
+			line =ps.executeUpdate();
+		}
+
+		return line;
 	}
 
 }
