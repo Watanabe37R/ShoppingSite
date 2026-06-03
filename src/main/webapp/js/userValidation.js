@@ -1,3 +1,6 @@
+/*
+ * ユーザ上表入力に対してフロント側のバリデーション
+ */
 const id = document.getElementById("id");
 const mail = document.getElementById("mail");
 const mailConfirm = document.getElementById("mailConfirm");

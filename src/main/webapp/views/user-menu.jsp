@@ -42,7 +42,7 @@
 						</c:when>
 						<c:otherwise>
 							<div class="menu">
-								<a href="#">お知らせ</a> <a href="#">カート</a> <a href="#">会員情報</a>
+								<a href="#">お知らせ</a> <a href="#">カート</a> <a href="user-account.jsp">会員情報</a>
 								<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
 							</div>
 						</c:otherwise>

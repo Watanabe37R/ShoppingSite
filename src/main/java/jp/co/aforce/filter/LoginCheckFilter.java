@@ -58,7 +58,8 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 				|| sp.startsWith("/views/logout")
 				|| sp.startsWith("/Registration")
 				|| sp.startsWith("/views/registration")
-				|| sp.endsWith("user-menu.jsp");
+				|| sp.endsWith("user-menu.jsp")
+				|| sp.endsWith("userDelete-out.jsp");
 
 		// ホワイトリストは通す
 		if (allow) {
@@ -69,7 +70,7 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		//それ以外で
 		//ログインしてなければtopへ
 		if (!loginStatus) {
-			res.sendRedirect(req.getContextPath() + "/views/top.jsp");
+			res.sendRedirect(req.getContextPath() + "/views/user-menu.jsp");
 			return;
 		}
 

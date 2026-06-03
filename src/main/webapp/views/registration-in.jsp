@@ -31,6 +31,7 @@
 			<p>住所<input type="text" id="address" name="address" value="${setUser.address}" required></p>
 			<input type="submit" id="submitBtn" value="次へ">
 			<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
+			<script src="${pageContext.request.contextPath}/js/idpwChecker.js" defer></script>
 		</form>
 	</Div>
 </body>

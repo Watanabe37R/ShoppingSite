@@ -10,6 +10,7 @@ public class RegistrationCheckAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String lname = request.getParameter("lname");

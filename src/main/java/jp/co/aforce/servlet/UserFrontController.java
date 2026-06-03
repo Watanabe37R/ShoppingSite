@@ -41,7 +41,7 @@ public class UserFrontController extends HttpServlet {
 			actionName = "jp.co.aforce.action." + className;
 			Action action = (Action) Class.forName(actionName).getDeclaredConstructor().newInstance();
 			pass = action.execute(request, response);
-			if (pass.endsWith("-error.jsp")||pass.endsWith("-check.jsp")||pass.endsWith("-in.jsp")) {
+			if (pass.endsWith("-error.jsp")||pass.endsWith("-check.jsp")||pass.endsWith("-in.jsp")||pass.endsWith("-view.jsp")) {
 				request.getRequestDispatcher("views/" + pass).forward(request, response);
 			} else {
 				response.sendRedirect(request.getContextPath() + "/views/" + pass);
