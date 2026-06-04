@@ -46,7 +46,7 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		//静的ファイルは通す
 		if (sp.startsWith("/css") ||
 				sp.startsWith("/js") ||
-				sp.startsWith("/images")) {
+				sp.startsWith("/img")) {
 			chain.doFilter(request, response);
 			return;
 		}

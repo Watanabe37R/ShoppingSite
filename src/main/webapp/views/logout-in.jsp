@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/membersstyle.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/headerStyle.css">
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +12,15 @@
 <title>ログアウト</title>
 </head>
 <body>
-	<Div class="form">
-		<h2>ログアウトしますか？</h2>
-		<p><a href="${pageContext.request.contextPath}/Logout.action">ログアウト</a></p>
-		<p><a href="top.jsp">戻る</a></p>
-	</Div>
+	<header class="top-header-layout">
+		<jsp:include page="/contents/headerNoSearchbar.jsp" />
+	</header>
+	<main>
+		<Div class="form">
+			<h2>ログアウトしますか？</h2>
+			<p><a href="${pageContext.request.contextPath}/Logout.action">ログアウト</a></p>
+			<p><a href="top.jsp">戻る</a></p>
+		</Div>
+	</main>
 </body>
 </html>

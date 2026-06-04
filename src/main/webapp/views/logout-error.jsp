@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/membersstyle.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/headerStyle.css">
+<%@taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +12,16 @@
 <title>ログアウト</title>
 </head>
 <body>
-	<Div class="form">
-		すでにログアウト済みです。
-		<p>三秒後に戻ります</p>
-		<meta http-equiv="refresh" content="3;url=${pageContext.request.contextPath}/views/top.jsp">
-		<p><a href="${pageContext.request.contextPath}/views/top.jsp">すぐ戻る</a></p>
-	</Div>
+	<header class="top-header-layout">
+		<jsp:include page="/contents/headerNoSearchbar.jsp" />
+	</header>
+	<main>
+		<Div class="form">
+			すでにログアウト済みです。
+			<p>三秒後に戻ります</p>
+			<meta http-equiv="refresh" content="3;url=${pageContext.request.contextPath}/views/top.jsp">
+			<p><a href="${pageContext.request.contextPath}/views/top.jsp">すぐ戻る</a></p>
+		</Div>
+	</main>
 </body>
 </html>

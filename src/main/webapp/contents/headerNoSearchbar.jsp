@@ -1,0 +1,37 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%--左：タイトル--%>
+<div class="title">
+	<a href="${pageContext.request.contextPath}/views/top.jsp"><img src="${pageContext.request.contextPath}/img/ECsiteLogo.png"></a>
+</div>
+
+<%--中央：検索(管理者以外)--%>
+<div class="search"></div>
+
+<%--ユーザー名+メニュー--%>
+<div class="contents">
+	<c:choose>
+		<c:when test="${not empty sessionScope.loginuser}">
+			<span class="user-name"> ようこそ、${loginuser.lastName}さん </span>
+			<c:choose>
+				<c:when test="${loginuser.manager == 1}">
+					<div class="menu">
+						<a href="#">お知らせ</a> <a href="#">管理情報</a>
+						<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="menu">
+						<a href="#">お知らせ</a> <a href="#">カート</a> <a href="user-menu.jsp">会員情報</a>
+						<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+		<c:otherwise>
+			<div class="menu">
+				<a href="login-in.jsp" class="btn-highlight">ログイン</a> <a href="registration-in.jsp" class="btn-highlight">新規登録</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+</div>

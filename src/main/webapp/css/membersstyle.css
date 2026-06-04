@@ -49,7 +49,7 @@ input[type="submit"]:hover {
 }
 
 /* リンク */
-a {
+main a {
   width: 100%;
   padding: 10px;
   background-color: #00aaff;
@@ -62,17 +62,17 @@ a {
   box-sizing: border-box;
 }
 
-a.main{
+main a.main{
 	background-color: rgb(252, 197, 95);
 	color:black;
 }
 
 /* リンクホバー */
-a:hover {
+main a:hover {
   background-color: #0088cc;
 }
 
-a.main:hover{
+main a.main:hover{
 	background-color: rgb(251, 167, 11);
 }
 
