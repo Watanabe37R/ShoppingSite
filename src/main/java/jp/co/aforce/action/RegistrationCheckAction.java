@@ -1,16 +1,18 @@
 package jp.co.aforce.action;
 
+import java.util.List;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import jp.co.aforce.bean.Users;
-import jp.co.aforce.dao.UsersDAO;
+import jp.co.aforce.validator.UsersValidatorSet;
 
 public class RegistrationCheckAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String lname = request.getParameter("lname");
@@ -26,37 +28,18 @@ public class RegistrationCheckAction extends Action {
 		setUser.setAddress(address);
 		setUser.setMailAddress(mail);
 
-		UsersDAO dao = new UsersDAO();
-
-		switch (dao.check(id, mail)) {
-		case ID_DUPLICATE:
-			// IDエラー
-			request.setAttribute("errorMessage", "IDが重複しています。"
-					+ "<br>違うIDを使用してください");
-			return "registration-error.jsp";
-			
-		case MAIL_DUPLICATE:
-			// メールエラー
-			request.setAttribute("errorMessage", "メールアドレスが重複しています。"
-					+ "<br>違うメールアドレスを使用してください");
-			return "registration-error.jsp";
-			
-		case BOTH_DUPLICATE:
-			// 両方エラー
-			request.setAttribute("errorMessage", "ID,メールアドレスが重複しています。"
-					+ "<br>違うID、メールアドレスを使用してください");
-			return "registration-error.jsp";
-			
-		case OK:
-			// 正常(登録確認画面へ)
-			request.setAttribute("setUser", setUser);
-			return "registration-check.jsp";
-
-		default:
-			request.setAttribute("errorMessage", "処理中にエラーが発生いたしました。"
-					+ "<br>恐れ入りますが、最初からやり直してください。");
+		//バリデーション
+		UsersValidatorSet validate =new UsersValidatorSet();
+		List<String> errors=validate.registrationValidate(setUser);
+		//全部含めてエラーへ
+		if (!errors.isEmpty()) {
+			request.setAttribute("errors", errors);
 			return "registration-error.jsp";
 		}
+
+		// 正常(登録確認画面へ)
+		request.setAttribute("setUser", setUser);
+		return "registration-check.jsp";
 
 	}
 

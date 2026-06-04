@@ -12,7 +12,11 @@
 <body>
 	<Div class="form">
 		<h2>ログインに失敗しました。</h2>
-		${loginerrormessage}
+
+		<c:forEach var="error" items="${errors}">
+			<p style="color: red">${error}</p>
+		</c:forEach>
+
 		<c:choose>
 			<c:when test="${requestScope.errorType=='sessionConflict'}">
 				<p>

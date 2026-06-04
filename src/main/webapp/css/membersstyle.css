@@ -85,7 +85,7 @@ a.main:hover{
 .names input {
   width: 100%;
 }
-
+/*三つ巴ボタン部*/
 button[type="submit"] {
   width: 100%;
   padding: 10px;

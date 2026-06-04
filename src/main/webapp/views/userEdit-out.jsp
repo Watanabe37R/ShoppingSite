@@ -11,8 +11,8 @@
 <body>
 	<div class="account-container">
 		<h2>会員情報を修正しました。</h2>
-		<p><a href="user-account.jsp">会員情報ページへ戻る</a></p>
-		<p><a href="user-menu.jsp">ホームへ戻る</a>
+		<p><a href="user-menu.jsp">会員情報ページへ戻る</a></p>
+		<p><a href="top.jsp">ホームへ戻る</a>
 	</div>
 </body>
 </html>

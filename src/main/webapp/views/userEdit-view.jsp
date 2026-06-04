@@ -22,7 +22,7 @@
 			<br>
 			<hr>
 			<input type="hidden" name="mode" value="edit">
-			<input type="submit" value="変更する">
+			<input type="submit" value="本人情報の編集">
 		</form>
 	</div>
 </body>

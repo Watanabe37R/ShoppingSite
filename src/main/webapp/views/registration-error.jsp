@@ -11,10 +11,15 @@
 </head>
 <body>
 	<Div class="form">
-		<h2>ログインに失敗しました。</h2>
-		${errorMessage}
+		<h2>新規登録でエラーが発生しました。</h2>
+
+		<c:forEach var="error" items="${errors}">
+			<p style="color: red">${error}</p>
+		</c:forEach>
+
 		<p>
-			<a href="${pageContext.request.contextPath}/views/registration-in.jsp">新規登録画面に戻る</a>
+			<a
+				href="${pageContext.request.contextPath}/views/registration-in.jsp">新規登録画面に戻る</a>
 		</p>
 	</Div>
 </body>

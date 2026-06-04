@@ -14,7 +14,7 @@
 		<p>ご利用ありがとうございます！</p>
 		<p><a href="login-in.jsp" class="main">ログイン</a></p>
 		<hr>
-		<p><a href="user-menu.jsp">トップページへ</a></p>
+		<p><a href="top.jsp">トップページへ</a></p>
 	</Div>
 </body>
 </html>

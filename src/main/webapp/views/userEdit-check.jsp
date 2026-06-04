@@ -21,7 +21,11 @@
 			<input type="text" name="address" value="${editUser.address}" class="look" readonly>
 			<br>
 			<hr>
-			<input type="submit" value="変更する">
+			<div class="buttons">
+				<button type="submit" class="main" name="mode" value="update">登録</button>
+	 			<button type="submit" name="mode" value="back">修正</button>
+	 			<button type="submit" name="mode" value="cancel">取消</button>
+			</div>
 		</form>
 	</div>
 </body>

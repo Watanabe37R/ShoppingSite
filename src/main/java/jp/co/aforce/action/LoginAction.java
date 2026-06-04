@@ -1,5 +1,7 @@
 package jp.co.aforce.action;
 
+import java.util.List;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -7,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import jp.co.aforce.bean.Users;
 import jp.co.aforce.dao.UsersDAO;
 import jp.co.aforce.servlet.UserFrontController;
+import jp.co.aforce.validator.UsersValidatorSet;
 
 public class LoginAction extends Action {
 	//ログインユーザがいるかどうかチェック
@@ -15,16 +18,14 @@ public class LoginAction extends Action {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-
-		//空文字チェック
-		if (id == null || id.trim().isEmpty()) {
-			request.setAttribute("errorType", "normal");
-			request.setAttribute("loginerrormessage", "ユーザIDが空白です。");
-			return "login-error.jsp";
-		}
-		if (pw == null || pw.trim().isEmpty()) {
-			request.setAttribute("errorType", "normal");
-			request.setAttribute("loginerrormessage", "パスワードが空白です。");
+		Users loginusercheck =new Users();
+		loginusercheck.setMemberId(id);
+		loginusercheck.setPassword(pw);
+		UsersValidatorSet validate = new UsersValidatorSet();
+		List<String> errors=validate.logInValidate(loginusercheck);
+		//エラーがある場合エラー画面へ
+		if (!errors.isEmpty()) {
+			request.setAttribute("errors", errors);
 			return "login-error.jsp";
 		}
 
@@ -38,11 +39,12 @@ public class LoginAction extends Action {
 				HttpSession oldSession = UserFrontController.usersSession.get(id);
 				//強制ログインではない場合
 				if (!force) {
-					request.setAttribute("loginerrormessage",
+					errors.add(
 							"他のブラウザでログインをしているため、ログイン処理を中断いたしました。"
 									+ "<br>当該ブラウザでログアウトするか、強制ログインを行ってください"
 									+ "<br>※強制ログインを行うと、現在のログイン状態を解除いたします。");
 					request.setAttribute("errorType", "sessionConflict");
+					request.setAttribute("errors", errors);
 					return "login-error.jsp";
 				}
 				//旧セッションがあるなら殺す
@@ -63,7 +65,8 @@ public class LoginAction extends Action {
 			}
 		}
 		request.setAttribute("errorType", "normal");
-		request.setAttribute("loginerrormessage", "ユーザIDかパスワードが間違っています。");
+		errors.add("ユーザIDかパスワードが間違っています。");
+		request.setAttribute("errors", errors);
 		return "login-error.jsp";
 	}
 }

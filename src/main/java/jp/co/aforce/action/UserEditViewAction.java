@@ -17,6 +17,7 @@ public class UserEditViewAction extends Action {
 		UsersDAO dao = new UsersDAO();
 		Users userInfo = dao.findById(sId);
 		String mode = request.getParameter("mode");
+		
 		if (userInfo == null) {
 			return "login-in.jsp";
 		}

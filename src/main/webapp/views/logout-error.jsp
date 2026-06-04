@@ -12,8 +12,8 @@
 	<Div class="form">
 		すでにログアウト済みです。
 		<p>三秒後に戻ります</p>
-		<meta http-equiv="refresh" content="3;url=${pageContext.request.contextPath}/views/user-menu.jsp">
-		<p><a href="${pageContext.request.contextPath}/views/user-menu.jsp">すぐ戻る</a></p>
+		<meta http-equiv="refresh" content="3;url=${pageContext.request.contextPath}/views/top.jsp">
+		<p><a href="${pageContext.request.contextPath}/views/top.jsp">すぐ戻る</a></p>
 	</Div>
 </body>
 </html>

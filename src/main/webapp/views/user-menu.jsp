@@ -1,70 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="jakarta.tags.core"%>
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="jakarta.tags.core"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/topstyle.css">
+	href="${pageContext.request.contextPath}/css/accountstyle.css">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>会員情報登録ホーム</title>
+<title>アカウント情報</title>
 </head>
+
 <body>
-	<header class="top-header-layout">
+    <div class="account-container">
+        <h2>ユーザアカウント情報</h2>
 
-		<%--左：タイトル--%>
-		<div class="title">
-			<h2>EC-Site</h2>
-		</div>
+        <p class="login-id">
+            ログインID：${sessionScope.loginuser.memberId}
+        </p>
 
-		<%--中央：検索(管理者以外)--%>
-		<div class="search">
-			<c:if
-				test="${empty sessionScope.loginuser || loginuser.manager != 1}">
-				<form action="search" method="post">
-					<input type="text" name="name">
-					<input type="submit" value="検索">
-				</form>
-			</c:if>
-		</div>
+        <h3>登録情報</h3>
+        <div class="link-buttons">
+            <a href="${pageContext.request.contextPath}/UserEditView.action?mode=view">基本情報</a>
+            <a href="user-loginInfo.jsp">ログイン情報</a>
+        </div>
 
-		<%--ユーザー名+メニュー--%>
-		<div class="contents">
-			<c:choose>
-				<c:when test="${not empty sessionScope.loginuser}">
-					<span class="user-name"> ようこそ、${loginuser.lastName}さん </span>
-					<c:choose>
-						<c:when test="${loginuser.manager == 1}">
-							<div class="menu">
-								<a href="#">お知らせ</a> <a href="#">管理情報</a>
-								<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="menu">
-								<a href="#">お知らせ</a> <a href="#">カート</a> <a href="user-account.jsp">会員情報</a>
-								<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
-							</div>
-						</c:otherwise>
-					</c:choose>
-				</c:when>
-				<c:otherwise>
-					<div class="menu">
-						<a href="login-in.jsp" class="btn-highlight">ログイン</a> <a href="registration-in.jsp" class="btn-highlight">新規登録</a>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</header>
-	<main>
-		<c:choose>
-			<c:when test="${loginuser.manager == 1}">
-				<%@ include file="adminmenu.jsp"%>
-			</c:when>
-			<c:otherwise>
-				<%@ include file="generalmenu.jsp"%>
-			</c:otherwise>
-		</c:choose>
-	</main>
+        <h3>利用履歴</h3>
+        <div class="history-empty">
+            現在、利用履歴はありません
+        </div>
+    </div>
 </body>
+
 </html>
