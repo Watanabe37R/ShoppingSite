@@ -47,11 +47,11 @@ public class UserEditAction extends Action {
 					return "userEdit-out.jsp";
 				} else {
 					errors.add("更新処理中にエラーが発生しました。"
-							+ "<br>お手数をおかけしますがやり直しをお願いします。");
+							+ "<br>操作をやり直してください。");
 				}
 			} catch (Exception e) {
-				errors.add("更新処理中にエラーが発生しました。"
-						+ "<br>お手数をおかけしますがやり直しをお願いします。");
+				errors.add("システムエラーが発生しました。"
+						+ "<br>操作をやり直してください。");
 			}
 
 		//他のボタン操作時
@@ -62,7 +62,7 @@ public class UserEditAction extends Action {
 			return "top.jsp";
 		}
 		errors.add("システムエラーが発生しました。"
-				+ "<br>お手数をおかけしますがやり直しをお願いします。");
+				+ "<br>操作をやり直してください。");
 		request.setAttribute("errors", errors);
 		return "userEdit-error.jsp";
 	}

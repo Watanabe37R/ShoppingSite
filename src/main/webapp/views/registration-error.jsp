@@ -16,7 +16,7 @@
 		<jsp:include page="/contents/headerNoSearchbar.jsp" />
 	</header>
 	<main>
-		<Div cl	ass="form">
+		<Div class="form">
 			<h2>新規登録でエラーが発生しました。</h2>
 	
 			<c:forEach var="error" items="${errors}">

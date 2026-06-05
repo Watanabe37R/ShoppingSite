@@ -20,7 +20,7 @@ public class UsersValidatorSet {
 		}
 		//入力規則チェックその他
 		if (!validator.isIdPwInputValid(user)) {
-			errors.add("入力文字規定違反です。<br>対象：苗字、名前、住所");
+			errors.add("入力文字規定違反です。<br>対象：ID,PW");
 		}
 		return errors;
 	}
@@ -33,11 +33,11 @@ public class UsersValidatorSet {
 		List<String> errors = new ArrayList<>();
 		//文字数チェック
 		if (!validator.isRegistrationValid(user)) {
-			errors.add("入力文字規定違反です。<br>対象：ID,パスワード");
+			errors.add("文字数規定違反です。");
 		}
 		//入力規則チェックID,PW
 		if (!validator.isIdPwInputValid(user)) {
-			errors.add("文字数規定違反です。");
+			errors.add("入力文字規定違反です。<br>対象：ID,パスワード");
 		}
 		//入力規則チェックMail
 		if (!validator.isMailInputValid(user)) {
