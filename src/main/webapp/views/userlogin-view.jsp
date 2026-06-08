@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/accountstyle.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/headerStyle.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/accountstyle.css">
+
 <%@taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@
 				<form action="${pageContext.request.contextPath}/UserLoginInfo.action" method="post">
 				<p>${requestScope.userInfo.mailAddress}</p>
 				<input type="hidden" name="mode" value="edit">
-				<input type="submit" value="メールアドレスの変更">
+				<input type="submit" value="メールアドレスの変更" class="link-btn">
 				</form>
 			</div>
 
