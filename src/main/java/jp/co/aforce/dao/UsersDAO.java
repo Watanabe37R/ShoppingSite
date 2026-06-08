@@ -34,7 +34,7 @@ public class UsersDAO extends DAO {
 	}
 
 	/*
-	 * ID,PW重複チェック。登録、更新で使用
+	 * ID,メアド重複チェック。登録、更新で使用
 	 */
 	public DuplicateResult check(String id, String mail) throws Exception {
 		boolean duplicateID = false;
@@ -140,6 +140,22 @@ public class UsersDAO extends DAO {
 		}
 		return line;
 	}
+	
+	/*
+	 * IDに紐づくメールアドレスの修正(更新)。キーはユーザID。
+	 */
+	public int mailUpdate(String id,Users users) throws Exception{
+		int line=0;
+		try(Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("UPDATE users SET MAIL_ADDRESS=? WHERE MEMBER_ID=?");){
+			String mail=users.getMailAddress();
+			ps.setString(1, mail);
+			ps.setString(2, id);
+			line =ps.executeUpdate();
+		}
+		return line;
+	}
+	
 	
 	/*
 	 * IDに紐づくアカウント情報の削除(DELETE)。キーはユーザID。

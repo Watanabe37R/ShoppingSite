@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>基本情報修正エラー</title>
+<title>メールアドレス修正エラー</title>
 </head>
 <body>
 	<header class="top-header-layout">
@@ -23,7 +23,7 @@
 				<p style="color: red">${error}</p>
 			</c:forEach>
 	
-			<p><a href="${pageContext.request.contextPath}/UserEditView.action?mode=edit">基本情報更新画面に戻る</a></p>
+			<p><a href="${pageContext.request.contextPath}/UserLoginInfo.action?mode=edit">ログイン情報画面に戻る</a></p>
 			<p><a href="${pageContext.request.contextPath}/views/top.jsp">トップに戻る</a></p>
 		</div>
 	</main>

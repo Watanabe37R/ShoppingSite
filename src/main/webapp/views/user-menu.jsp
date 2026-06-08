@@ -24,9 +24,8 @@
 
 			<h3>登録情報</h3>
 			<div class="link-buttons">
-				<a
-					href="${pageContext.request.contextPath}/UserEditView.action?mode=view">基本情報</a>
-				<a href="user-loginInfo.jsp">ログイン情報</a>
+				<a href="${pageContext.request.contextPath}/UserEditView.action?mode=view">基本情報</a>
+				<a href="${pageContext.request.contextPath}/UserLoginInfo.action?mode=view">ログイン情報</a>
 			</div>
 
 			<h3>利用履歴</h3>

@@ -90,4 +90,39 @@ public class UsersValidatorSet {
 		}
 		return errors;
 	}
+	
+	/*
+	 * メアド更新時に使用するバリデータセット
+	 */
+	public List<String> mailEditValidate(Users user) {
+		UsersValidator validator = new UsersValidator();
+		List<String> errors = new ArrayList<>();
+		//文字数チェック
+		if (!validator.isMailEditValid(user)) {
+			errors.add("文字数規定違反です。");
+		}
+		//入力規則チェックMail
+		if (!validator.isMailInputValid(user)) {
+			errors.add("入力文字規定違反です。<br>対象：メールアドレス");
+		}
+
+		//今までにえらーがないなら
+		if (errors.isEmpty()) {
+			//重複チェック
+			UsersDAO dao = new UsersDAO();
+			try {
+				DuplicateResult result = dao.check(user.getMemberId(), user.getMailAddress());
+				//IDcheckは行わない(必ず重複するため)
+				if (result == DuplicateResult.MAIL_DUPLICATE || result == DuplicateResult.BOTH_DUPLICATE) {
+					// メールエラー
+					errors.add("メールアドレスが重複しています。"
+							+ "<br>違うメールアドレスを使用してください");
+				}
+			} catch (Exception e) {
+				errors.add("システムエラーが発生しました。"
+						+ "<br>時間をおいて再度お試しください。");
+			}
+		}
+		return errors;
+	}
 }

@@ -24,21 +24,25 @@
 			<c:choose>
 				<c:when test="${loginuser.manager == 1}">
 					<div class="menu">
-						<a href="#">お知らせ</a> <a href="#">管理情報</a>
-						<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
+						<a href="#">お知らせ</a>
+						<a href="#">管理情報</a>
+						<a href="${pageContext.request.contextPath}/views/logout-in.jsp" class="btn-highlight">ログアウト</a>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="menu">
-						<a href="#">お知らせ</a> <a href="#">カート</a> <a href="user-menu.jsp">会員情報</a>
-						<a href="logout-in.jsp" class="btn-highlight">ログアウト</a>
+						<a href="#">お知らせ</a>
+						<a href="#">カート</a>
+						<a href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報</a>
+						<a href="${pageContext.request.contextPath}/views/logout-in.jsp" class="btn-highlight">ログアウト</a>
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</c:when>
 		<c:otherwise>
 			<div class="menu">
-				<a href="login-in.jsp" class="btn-highlight">ログイン</a> <a href="registration-in.jsp" class="btn-highlight">新規登録</a>
+				<a href="${pageContext.request.contextPath}/views/login-in.jsp" class="btn-highlight">ログイン</a>
+				<a href="${pageContext.request.contextPath}/views/registration-in.jsp" class="btn-highlight">新規登録</a>
 			</div>
 		</c:otherwise>
 	</c:choose>

@@ -26,7 +26,6 @@ public class UserEditCheckAction extends Action {
 			request.setAttribute("errors", errors);
 			return "userEdit-error.jsp";
 		}
-		//後で分岐
 		request.setAttribute("editUser", editUser);
 		return "userEdit-check.jsp";
 	}

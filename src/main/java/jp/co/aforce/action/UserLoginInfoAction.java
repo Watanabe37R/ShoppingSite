@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import jp.co.aforce.bean.Users;
 import jp.co.aforce.dao.UsersDAO;
 
-public class UserEditViewAction extends Action {
+public class UserLoginInfoAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -16,7 +16,8 @@ public class UserEditViewAction extends Action {
 		String sId = user.getMemberId();
 		UsersDAO dao = new UsersDAO();
 		String mode = request.getParameter("mode");
-		try {
+		
+		try{
 			Users userInfo = dao.findById(sId);
 			if (userInfo == null) {
 				return "top.jsp";
@@ -24,15 +25,14 @@ public class UserEditViewAction extends Action {
 			if (userInfo.getManager() == 1) {
 				return "top.jsp";
 			}
-
 			request.setAttribute("userInfo", userInfo);
 			// 分岐
 			if ("edit".equals(mode)) {
-				return "userEdit-in.jsp"; // 編集画面
+				return "userMailEdit-in.jsp"; // 編集画面
 			} else {
-				return "userEdit-view.jsp"; // 表示画面
+				return "userlogin-view.jsp"; // 表示画面
 			}
-		} catch (Exception e) {
+		}catch (Exception e) {
 			return "top.jsp";
 		}
 	}

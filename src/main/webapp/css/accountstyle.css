@@ -43,7 +43,8 @@
 }
 
 /* 各リンク */
-.link-buttons a {
+.link-buttons a,
+.link-buttons input[type="submit"] {
     display: inline-block;
     padding: 8px 14px;
     border-radius: 20px;
@@ -56,7 +57,8 @@
 }
 
 /* ホバー */
-.link-buttons a:hover {
+.link-buttons a:hover,
+.link-buttons input[type="submit"]:hover {
     background: linear-gradient(135deg, #0077aa, #004e6b);
     transform: translateY(-1px);
 }

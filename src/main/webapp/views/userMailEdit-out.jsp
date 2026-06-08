@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>修正内容入力</title>
+<title>修正完了</title>
 </head>
 <body>
 	<header class="top-header-layout">
@@ -17,19 +17,9 @@
 	</header>
 	<main>
 		<div class="account-container">
-			<h2>本人情報修正入力</h2>
-			<form action="${pageContext.request.contextPath}/UserEditCheck.action" method="post">
-				名前<br>
-				<div class="name">
-					<input type="text" name="lname" value="${userInfo.lastName}" required>
-					<input type="text" name="fname" value="${userInfo.firstName}" required>
-				</div>
-				<br>住所<br>
-				<input type="text" name="address" value="${userInfo.address}" required>
-				<br>
-				<hr>
-				<input type="submit" value="確認">
-			</form>
+			<h2>メールアドレス情報を修正しました。</h2>
+			<p><a href="user-menu.jsp">会員情報ページへ戻る</a></p>
+			<p><a href="top.jsp">ホームへ戻る</a>
 		</div>
 	</main>
 </body>
