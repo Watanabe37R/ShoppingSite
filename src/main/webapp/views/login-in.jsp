@@ -20,9 +20,12 @@
 			<form action="${pageContext.request.contextPath}/Login.action" method="post">
 				<h2>ログイン情報を入力してください</h2>
 				<p>ログインID<input type="text" id="id" name="id" required></p>
+				<span id="idM"></span>
 				<p>パスワード<input type="password" id="pw" name="pw" required></p>
+				<span id="pwM"></span>
+				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
 				<input type="hidden" name="force" value="${param.force}">
-				<input type="submit" value="ログイン">
+				<input type="submit" id="submitBtn" value="ログイン">
 			</form>
 			<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
 			<hr>

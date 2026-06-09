@@ -121,51 +121,66 @@ public class UsersDAO extends DAO {
 		}
 		return userInfo;
 	}
-	
+
 	/*
 	 * IDに紐づく基本情報の修正(更新)。キーはユーザID。
 	 */
-	public int update(String id,Users users) throws Exception{
-		int line=0;
-		try(Connection con = getConnection();
-				PreparedStatement ps = con.prepareStatement("UPDATE users SET LAST_NAME=?,FIRST_NAME=?,ADDRESS=? WHERE MEMBER_ID=?");){
-			String lname=users.getLastName();
-			String fname=users.getFirstName();
-			String address=users.getAddress();
+	public int update(String id, Users users) throws Exception {
+		int line = 0;
+		try (Connection con = getConnection();
+				PreparedStatement ps = con
+						.prepareStatement("UPDATE users SET LAST_NAME=?,FIRST_NAME=?,ADDRESS=? WHERE MEMBER_ID=?");) {
+			String lname = users.getLastName();
+			String fname = users.getFirstName();
+			String address = users.getAddress();
 			ps.setString(1, lname);
 			ps.setString(2, fname);
 			ps.setString(3, address);
 			ps.setString(4, id);
-			line =ps.executeUpdate();
+			line = ps.executeUpdate();
 		}
 		return line;
 	}
-	
+
 	/*
 	 * IDに紐づくメールアドレスの修正(更新)。キーはユーザID。
 	 */
-	public int mailUpdate(String id,Users users) throws Exception{
-		int line=0;
-		try(Connection con = getConnection();
-				PreparedStatement ps = con.prepareStatement("UPDATE users SET MAIL_ADDRESS=? WHERE MEMBER_ID=?");){
-			String mail=users.getMailAddress();
+	public int mailUpdate(String id, Users users) throws Exception {
+		int line = 0;
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("UPDATE users SET MAIL_ADDRESS=? WHERE MEMBER_ID=?");) {
+			String mail = users.getMailAddress();
 			ps.setString(1, mail);
 			ps.setString(2, id);
-			line =ps.executeUpdate();
+			line = ps.executeUpdate();
 		}
 		return line;
 	}
-	
-	
+
+	/*
+	 * IDに紐づくパスワードの修正(更新)。キーはユーザID。
+	 */
+	public int pwUpdate(String id, Users users) throws Exception {
+		int line = 0;
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("UPDATE users SET PASSWORD=? WHERE MEMBER_ID=?");) {
+			String pw = users.getPassword();
+			ps.setString(1, pw);
+			ps.setString(2, id);
+			line = ps.executeUpdate();
+		}
+		return line;
+	}
+
 	/*
 	 * IDに紐づくアカウント情報の削除(DELETE)。キーはユーザID。
 	 */
-	public int delete(String id) throws Exception{
-		int line=0;
-		try(Connection con = getConnection();
-				PreparedStatement ps = con.prepareStatement("DELETE FROM users WHERE MEMBER_ID=?");){
+	public int delete(String id) throws Exception {
+		int line = 0;
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("DELETE FROM users WHERE MEMBER_ID=?");) {
 			ps.setString(1, id);
-			line =ps.executeUpdate();
+			line = ps.executeUpdate();
 		}
 		return line;
 	}

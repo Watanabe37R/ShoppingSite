@@ -21,14 +21,18 @@
 			<form action="${pageContext.request.contextPath}/UserEditCheck.action" method="post">
 				名前<br>
 				<div class="name">
-					<input type="text" name="lname" value="${userInfo.lastName}" required>
-					<input type="text" name="fname" value="${userInfo.firstName}" required>
+					<input type="text" id="lname" name="lname" value="${userInfo.lastName}" required>
+					<input type="text" id="fname" name="fname" value="${userInfo.firstName}" required>
+					<span id="lnameM"></span>
+					<span id="fnameM"></span>
 				</div>
 				<br>住所<br>
-				<input type="text" name="address" value="${userInfo.address}" required>
+				<input type="text" id="address" name="address" value="${userInfo.address}" required>
+				<span id="addressM"></span>
+				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
 				<br>
 				<hr>
-				<input type="submit" value="確認">
+				<input type="submit" id="submitBtn" value="確認">
 			</form>
 		</div>
 	</main>

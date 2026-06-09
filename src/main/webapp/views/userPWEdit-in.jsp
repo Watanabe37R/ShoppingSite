@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>メールアドレス編集</title>
+<title>パスワード変更</title>
 </head>
 <body>
 	<header class="top-header-layout">
@@ -17,20 +17,20 @@
 	</header>
 	<main>
 		<div class="account-container">
-			<h2>新しいメールアドレスを入力してください</h2>
-			<form action="${pageContext.request.contextPath}/UserMailEditCheck.action" method="post">
-				現在ご利用中のメールアドレス<br>
-				<p>${requestScope.userInfo.mailAddress}</p>
-				<input type="hidden" name="oldMail" value="${requestScope.userInfo.mailAddress}">
-				新しいメールアドレス<br>
-				<input type="text" id="mail" name="mail" value="${requestScope.editUser.mailAddress}" required>
-				<span id="mailM"></span>
-				<br>
-				メールアドレス(確認)<br>
-				<input type="text" id="mailConfirm" name="mailConfirm" required>
-				<span id="mailConfirmM"></span>
+			<h2>古いパスワードと新しいパスワードを入力してください</h2>
+			<form action="${pageContext.request.contextPath}/UserPWEdit.action" method="post">
+				現在のパスワード<br>
+				<input type="password" name="pwOld" required>
 				<hr>
+				新しいパスワード<br>
+				<input type="password" id="pw" name="pw" required>
+				<span id="pwM"></span>
+				<br>
+				新しいパスワード(確認)<br>
+				<input type="password" id="pwConfirm" name="pwConfirm" required>
+				<span id="pwConfirmM"></span>
 				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
+				<hr>
 				<input type="submit" id="submitBtn" value="確認">
 			</form>
 		</div>

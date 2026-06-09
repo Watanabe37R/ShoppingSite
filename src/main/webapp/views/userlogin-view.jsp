@@ -32,14 +32,15 @@
 			</div>
 
 			<h3>パスワード</h3>
+			<p>セキュリティ上表示できません。</p>
 			<div class="link-buttons">
 				<a href="${pageContext.request.contextPath}/views/userPWEdit-in.jsp">パスワードの変更</a>
 			</div>
 			<br>
 			<hr>
 			<h3 style="color: red;">アカウントの削除</h3>
+			<p>${sessionScope.loginuser.memberId}(${requestScope.userInfo.mailAddress})のアカウント情報を削除(退会)します。</p>
 			<div class="link-buttons">
-				<%--${pageContext.request.contextPath}--%>
 				<a class="important" href="${pageContext.request.contextPath}/views/userDelete-in.jsp">アカウントの削除</a>
 			</div>
 		</div>

@@ -125,4 +125,21 @@ public class UsersValidatorSet {
 		}
 		return errors;
 	}
+	
+	/*
+	 * パスワード更新時に使用するバリデータセット
+	 */
+	public List<String> pwEditValidate(Users user) {
+		UsersValidator validator = new UsersValidator();
+		List<String> errors = new ArrayList<>();
+		//文字数チェック
+		if (!validator.isPassWordEditValid(user)) {
+			errors.add("文字数規定違反です。");
+		}
+		//入力規則チェックその他
+		if (!validator.isIdPwInputValid(user)) {
+			errors.add("入力文字規定違反です。");
+		}
+		return errors;
+	}
 }
