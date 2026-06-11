@@ -31,8 +31,16 @@
 				<span id="mailConfirmM"></span>
 				<hr>
 				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
+
+				<script>
+				  const contextPath = "${pageContext.request.contextPath}";
+				</script>
+				<script src="${pageContext.request.contextPath}/js/duplicationChecker.js" defer></script>
 				<input type="submit" id="submitBtn" value="確認">
 			</form>
+			<a href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報ページへ戻る</a>
+			<hr>
+			<a href="${pageContext.request.contextPath}/views/top.jsp">トップページへ戻る</a>
 		</div>
 	</main>
 </body>

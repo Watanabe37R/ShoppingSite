@@ -28,7 +28,7 @@
 				<span id="mailConfirmM"></span>
 				<p>パスワード<input type="password" id="pw" name="pw" required></p>
 				<span id="pwM"></span>
-				<p>パスワード(確認)<input type="password" id="confirm" name="confirm" required></p>
+				<p>パスワード(確認)<input type="password" id="pwConfirm" name="confirm" required></p>
 				<span id="pwConfirmM"></span>
 				<div class="names">
 					<span>苗字</span>
@@ -42,7 +42,11 @@
 				<span id="addressM"></span>
 				<input type="submit" id="submitBtn" value="次へ">
 				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
-				<script src="${pageContext.request.contextPath}/js/idpwChecker.js" defer></script>
+
+				<script>
+				  const contextPath = "${pageContext.request.contextPath}";
+				</script>
+				<script src="${pageContext.request.contextPath}/js/duplicationChecker.js" defer></script>
 			</form>
 		</Div>
 	</main>

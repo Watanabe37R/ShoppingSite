@@ -40,6 +40,7 @@ function setError(el, msg) {
 
 function clearError(el) {
 	el.textContent = "";
+	el.style.color = "";
 }
 
 const state = {
@@ -50,7 +51,10 @@ const state = {
 	pwConfirm: !pwConfirm,
 	lname: !lname,
 	fname: !fname,
-	address: !address
+	address: !address,
+	//重複チェックがあるとき
+	idDuplicate: true,
+	mailDuplicate: true
 };
 
 // =====================

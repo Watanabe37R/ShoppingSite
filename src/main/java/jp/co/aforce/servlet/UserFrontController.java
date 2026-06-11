@@ -20,6 +20,7 @@ import jp.co.aforce.action.Action;
 public class UserFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static Map<String, HttpSession> usersSession = new ConcurrentHashMap<>();
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -36,12 +37,16 @@ public class UserFrontController extends HttpServlet {
 			//名前の.actionをActionにする準備
 			String raw = actionPass.replace(".action", "");
 			//念のためクラス名に合うように先頭を大文字に+Action付与
-			String className = Character.toUpperCase(raw.charAt(0))+raw.substring(1) +"Action";
+			String className = Character.toUpperCase(raw.charAt(0)) + raw.substring(1) + "Action";
 			//場所を絶対パスで指定
 			actionName = "jp.co.aforce.action." + className;
 			Action action = (Action) Class.forName(actionName).getDeclaredConstructor().newInstance();
 			pass = action.execute(request, response);
-			if (pass.endsWith("-error.jsp")||pass.endsWith("-check.jsp")||pass.endsWith("-in.jsp")||pass.endsWith("-view.jsp")) {
+
+			if (pass == null) {
+				return; // JSON用
+			} else if (pass.endsWith("-error.jsp") || pass.endsWith("-check.jsp") || pass.endsWith("-in.jsp")
+					|| pass.endsWith("-view.jsp")) {
 				request.getRequestDispatcher("views/" + pass).forward(request, response);
 			} else {
 				response.sendRedirect(request.getContextPath() + "/views/" + pass);

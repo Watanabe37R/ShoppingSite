@@ -51,29 +51,19 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 			return;
 		}
 
-		// 通す条件（ホワイトリスト）
-		boolean allow = sp.startsWith("/Login")
-				|| sp.startsWith("/views/login")
-				|| sp.startsWith("/Logout")
-				|| sp.startsWith("/views/logout")
-				|| sp.startsWith("/Registration")
-				|| sp.startsWith("/views/registration")
-				|| sp.endsWith("top.jsp")
-				|| sp.endsWith("userDelete-out.jsp");
+		// 通さない条件（ブラックリスト）
 
-		// ホワイトリストは通す
-		if (allow) {
-			chain.doFilter(request, response);
-			return;
-		}
+		boolean needLogin = sp.startsWith("/views/logout")
+				|| sp.startsWith("/Logout")
+				|| sp.startsWith("/views/user")
+				|| sp.startsWith("/User");
 
 		//それ以外で
 		//ログインしてなければtopへ
-		if (!loginStatus) {
+		if (!loginStatus && needLogin) {
 			res.sendRedirect(req.getContextPath() + "/views/top.jsp");
 			return;
 		}
-
 		chain.doFilter(request, response);
 	}
 
