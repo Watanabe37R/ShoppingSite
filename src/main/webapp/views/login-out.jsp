@@ -19,8 +19,8 @@
 		<Div class="form">
 			<h2>こんにちは、${sessionScope.loginuser.lastName}さん！</h2>
 			<p>三秒後に戻ります</p>
-			<meta http-equiv="refresh" content="3;url=top.jsp">
-			<p><a href="top.jsp">すぐ戻る</a></p>
+			<meta http-equiv="refresh" content="3;url=${pageContext.request.contextPath}/Top.action">
+			<p><a href="${pageContext.request.contextPath}/Top.action">すぐ戻る</a></p>
 		</Div>
 	</main>
 </body>

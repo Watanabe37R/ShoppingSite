@@ -20,10 +20,10 @@ public class UserLoginInfoAction extends Action {
 		try{
 			Users userInfo = dao.findById(sId);
 			if (userInfo == null) {
-				return "top.jsp";
+				return "Top.action";
 			}
 			if (userInfo.getManager() == 1) {
-				return "top.jsp";
+				return "Top.action";
 			}
 			request.setAttribute("userInfo", userInfo);
 			// 分岐
@@ -33,7 +33,7 @@ public class UserLoginInfoAction extends Action {
 				return "userlogin-view.jsp"; // 表示画面
 			}
 		}catch (Exception e) {
-			return "top.jsp";
+			return "Top.action";
 		}
 	}
 

@@ -24,7 +24,7 @@
 			</c:forEach>
 	
 			<p><a href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報ページに戻る</a></p>
-			<p><a href="${pageContext.request.contextPath}/views/top.jsp">トップページに戻る</a>
+			<p><a href="${pageContext.request.contextPath}/Top.action">トップページに戻る</a>
 		</div>
 	</main>
 </body>

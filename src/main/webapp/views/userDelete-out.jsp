@@ -19,7 +19,7 @@
 		<Div class="form">
 			<h2>退会処理が完了しました。</h2>
 			<p>ご利用ありがとうございました。</p>
-			<p><a href="top.jsp">ホームへ戻る</a></p>
+			<p><a href="${pageContext.request.contextPath}/Top.action">ホームへ戻る</a></p>
 		</Div>
 	</main>
 </body>

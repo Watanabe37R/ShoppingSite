@@ -19,10 +19,10 @@ public class UserEditViewAction extends Action {
 		try {
 			Users userInfo = dao.findById(sId);
 			if (userInfo == null) {
-				return "top.jsp";
+				return "Top.action";
 			}
 			if (userInfo.getManager() == 1) {
-				return "top.jsp";
+				return "Top.action";
 			}
 
 			request.setAttribute("userInfo", userInfo);
@@ -33,7 +33,7 @@ public class UserEditViewAction extends Action {
 				return "userEdit-view.jsp"; // 表示画面
 			}
 		} catch (Exception e) {
-			return "top.jsp";
+			return "Top.action";
 		}
 	}
 

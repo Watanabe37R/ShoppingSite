@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+/* ===== 全体 ===== */
+body {
+	margin: 0;
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: linear-gradient(0deg, #eef6fb, #dbe9f4);
+	padding: 20px;
+}
+
+/* ===== メインエリア ===== */
+main {
+	margin-top: 20px;
+	background:azure;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* 左側 */
+.cart-left {
+    flex: 3;
+}
+
+/* 商品カード */
+.cart-item {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    grid-template-rows: auto auto;
+    border: 1px solid #aaa;
+    padding: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* 画像 */
+.item-img img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* 情報 */
+.item-info {
+    padding-left: 10px;
+}
+
+/* 価格 */
+.item-price {
+    color: #ff4d6d;
+    font-weight: bold;
+    text-align: right;
+}
+
+.item-price .sub {
+    font-size: 12px;
+    color: #333;
+}
+
+/* 操作部分 */
+.item-controls {
+    grid-column: 2 / 4;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* 右側 */
+.cart-right {
+    flex: 1;
+    border: 1px solid #aaa;
+    padding: 20px;
+    height: fit-content;
+}
+
+.total {
+    font-size: 20px;
+    color: red;
+}

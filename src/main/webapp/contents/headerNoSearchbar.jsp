@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%--左：タイトル--%>
 <div class="title">
-	<a href="${pageContext.request.contextPath}/views/top.jsp"><img src="${pageContext.request.contextPath}/img/ECsiteLogo.png"></a>
+	<a href="${pageContext.request.contextPath}/Top.action"><img src="${pageContext.request.contextPath}/img/ECsiteLogo.png"></a>
 </div>
 
 <%--中央：検索(管理者以外)--%>
@@ -23,7 +23,7 @@
 				<c:otherwise>
 					<div class="menu">
 						<a href="#">お知らせ</a>
-						<a href="#">カート</a>
+						<a href="${pageContext.request.contextPath}/UserCartView.action">カート</a>
 						<a href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報</a>
 						<a href="${pageContext.request.contextPath}/views/logout-in.jsp" class="btn-highlight">ログアウト</a>
 					</div>

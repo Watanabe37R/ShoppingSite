@@ -24,7 +24,7 @@
 			</c:forEach>
 	
 			<p><a href="${pageContext.request.contextPath}/UserEditView.action?mode=edit">基本情報更新画面に戻る</a></p>
-			<p><a href="${pageContext.request.contextPath}/views/top.jsp">トップに戻る</a></p>
+			<p><a href="${pageContext.request.contextPath}/Top.action">トップに戻る</a></p>
 		</div>
 	</main>
 </body>

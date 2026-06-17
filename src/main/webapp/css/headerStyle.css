@@ -32,9 +32,21 @@
 	margin: 0;
 }
 
+
+/* カテゴリ */
+.search select {
+    border-radius: 20px 0 0 20px;
+    border: none;
+    outline: none;
+    height: 32px;
+    padding: 0 10px;
+    background-color:aquamarine;
+}
+
+
 /* 検索入力 */
 .search input[type="text"] {
-	border-radius: 20px 0 0 20px;
+	border-radius: 0;
 	border: none;
 	outline: none;
 	width: 280px;

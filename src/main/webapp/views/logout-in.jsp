@@ -19,7 +19,7 @@
 		<Div class="form">
 			<h2>ログアウトしますか？</h2>
 			<p><a href="${pageContext.request.contextPath}/Logout.action">ログアウト</a></p>
-			<p><a href="top.jsp">戻る</a></p>
+			<p><a href="${pageContext.request.contextPath}/Top.action">戻る</a></p>
 		</Div>
 	</main>
 </body>

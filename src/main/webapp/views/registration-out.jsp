@@ -21,7 +21,7 @@
 			<p>ご利用ありがとうございます！</p>
 			<p><a href="login-in.jsp" class="main">ログイン</a></p>
 			<hr>
-			<p><a href="top.jsp">トップページへ</a></p>
+			<p><a href="${pageContext.request.contextPath}/Top.action">トップページへ</a></p>
 		</Div>
 	</main>
 </body>

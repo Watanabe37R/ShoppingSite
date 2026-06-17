@@ -60,7 +60,7 @@ public class RegistrationAction extends Action {
 			request.setAttribute("setUser", setUser);
 			return "registration-in.jsp";
 		} else if ("cancel".equals(mode)) {
-			return "top.jsp";
+			return "Top.action";
 		} else {
 			errors.add("システムエラーが発生しました。"
 					+ "<br>登録をやり直してください。");

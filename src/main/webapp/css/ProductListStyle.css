@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/* ===== 全体 ===== */
+body {
+	margin: 0;
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: linear-gradient(0deg, #eef6fb, #dbe9f4);
+	padding: 20px;
+}
+
+/* ===== メインエリア ===== */
+main {
+	margin-top: 20px;
+	background:azure;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  display: flex;
+  background-color: azure;
+}
+
+/* 左カラム */
+.sidebar {
+  width: 200px;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+/* 右カラム */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* 商品一覧 */
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* 商品カード */
+.card {
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+}
+
+/* 画像枠 */
+.img {
+  width: 100%;
+  height: 100px;
+  background: #eee;
+  margin-bottom: 10px;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+/*評価の☆*/
+.stars {
+    --rating: 0;
+    font-size: 18px;
+    font-family: Arial;
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    letter-spacing: 0px;
+}
+.stars::before {
+    content: "★★★★★";
+    color: #ccc;
+}
+.stars::after {
+    content: "★★★★★";
+    color: gold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--rating) / 5 * 100%);
+    overflow: hidden;
+}

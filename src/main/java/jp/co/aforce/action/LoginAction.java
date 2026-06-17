@@ -18,11 +18,11 @@ public class LoginAction extends Action {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		Users loginusercheck =new Users();
+		Users loginusercheck = new Users();
 		loginusercheck.setMemberId(id);
 		loginusercheck.setPassword(pw);
 		UsersValidatorSet validate = new UsersValidatorSet();
-		List<String> errors=validate.logInValidate(loginusercheck);
+		List<String> errors = validate.logInValidate(loginusercheck);
 		//エラーがある場合エラー画面へ
 		if (!errors.isEmpty()) {
 			request.setAttribute("errors", errors);
@@ -56,9 +56,20 @@ public class LoginAction extends Action {
 					}
 				}
 			}
-			UserFrontController.usersSession.put(id, session);
+			String redirect = (String) session.getAttribute("redirect");
+			//セッション再生成
+			session.invalidate();
+			session = request.getSession(true);
 			session.setAttribute("loginuser", loginuser);
+			UserFrontController.usersSession.put(id, session);
 			if (loginuser.getManager() == 0) {
+				//フィルターで飛ばされた場合
+				if (redirect != null) {
+					session.removeAttribute("redirect"); // 使い終わったら消す
+					System.out.println(redirect);
+					response.sendRedirect(redirect);
+					return null;
+				}
 				return "login-out.jsp";
 			} else {
 				return "login-out-manager.jsp";

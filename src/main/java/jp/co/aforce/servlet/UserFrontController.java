@@ -46,10 +46,14 @@ public class UserFrontController extends HttpServlet {
 			if (pass == null) {
 				return; // JSON用
 			} else if (pass.endsWith("-error.jsp") || pass.endsWith("-check.jsp") || pass.endsWith("-in.jsp")
-					|| pass.endsWith("-view.jsp")) {
+					|| pass.endsWith("-view.jsp") || pass.endsWith("top.jsp")) {
 				request.getRequestDispatcher("views/" + pass).forward(request, response);
 			} else {
-				response.sendRedirect(request.getContextPath() + "/views/" + pass);
+				if (pass.endsWith(".action")) {
+					response.sendRedirect(request.getContextPath() + "/" + pass);
+				} else {
+					response.sendRedirect(request.getContextPath() + "/views/" + pass);
+				}
 			}
 
 		} catch (Exception e) {

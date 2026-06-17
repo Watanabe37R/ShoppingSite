@@ -19,7 +19,7 @@
 		<div class="account-container">
 			<h2>メールアドレス情報を修正しました。</h2>
 			<p><a href="user-menu.jsp">会員情報ページへ戻る</a></p>
-			<p><a href="top.jsp">ホームへ戻る</a>
+			<p><a href="${pageContext.request.contextPath}/Top.action">ホームへ戻る</a>
 		</div>
 	</main>
 </body>

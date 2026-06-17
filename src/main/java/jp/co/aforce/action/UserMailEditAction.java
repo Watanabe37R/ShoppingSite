@@ -56,7 +56,7 @@ public class UserMailEditAction extends Action {
 			request.setAttribute("editUser", editUser);
 			return "userMailEdit-in.jsp";
 		} else if ("cancel".equals(mode)) {
-			return "top.jsp";
+			return "Top.action";
 		}
 		request.setAttribute("errors", errors);
 		return "userEdit-error.jsp";

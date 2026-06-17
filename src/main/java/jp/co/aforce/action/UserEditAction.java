@@ -58,7 +58,7 @@ public class UserEditAction extends Action {
 			request.setAttribute("userInfo", editUser);
 			return "userMailEdit-in.jsp";
 		} else if ("cancel".equals(mode)) {
-			return "top.jsp";
+			return "Top.action";
 		}
 		errors.add("システムエラーが発生しました。"
 				+ "<br>操作をやり直してください。");
