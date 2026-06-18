@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>商品カート</title>
+<title>商品決済確認</title>
 </head>
 <body>
 	<header class="top-header-layout">
@@ -20,16 +20,16 @@
 		<div class="cart-container">
 			<c:choose>
 				<c:when test="${empty cartList}">
-					<p>カートに商品が入っておりません<br><a href="${pageContext.request.contextPath}/Top.action">トップへ戻る</a></p>
+					<p>カートに商品が入っておりません</p>
 				</c:when>
 				<c:otherwise>
 					<div class="cart-left">
+						<div class="cart-item">
+							<p>支払方法</p>
+							<p>なんたらかんたら</p>
+						</div>
 						<c:forEach var="p" items="${cartList}">
 							<div class="cart-item">
-								<!-- 左：画像 -->
-								<div class="item-img">
-									<img src="${pageContext.request.contextPath}/${p.imageUrl}">
-								</div>
 								<!-- 中：商品情報 -->
 								<div class="item-info">
 									<div>${p.productId}</div>
@@ -46,23 +46,9 @@
 								</div>
 								<!-- 下：操作 -->
 								<div class="item-controls">
-								
-									<form action="UserCartUpdate.action" method="post">
-										<input type="hidden" name="productId" value="${p.productId}">
-								
-										<span>個数</span>
-										<select name="quantity">
-											<c:forEach begin="1" end="20" var="i">
-												<option ${i == p.quantity ? "selected" : ""}>${i}</option>
-											</c:forEach>
-										</select>
-										<input type="submit" value="数量変更">
-									</form>
-									
-									<form action="UserCartDelete.action" method="post">
-										<input type="hidden" name="productId" value="${p.productId}">
-										<input type="submit" value="削除">
-									</form>
+									<input type="hidden" name="productId" value="${p.productId}">
+									<span>個数</span>
+									${p.quantity}
 								</div>
 							</div>
 						</c:forEach>
@@ -78,9 +64,10 @@
 							合計：<fmt:formatNumber value="${total}" pattern="#,###" />円(税込)
 						</p>
 						
-						<form action="UserOrderConfirm.action" method="post">
-							<button class="checkout-btn">購入手続きに進む</button>
+						<form action="UserOrderConplete.action" method="post">
+							<button class="checkout-btn">購入する</button>
 						</form>
+
 					</div>
 				</c:otherwise>
 			</c:choose>

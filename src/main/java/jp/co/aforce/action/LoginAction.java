@@ -1,12 +1,14 @@
 package jp.co.aforce.action;
 
 import java.util.List;
+import java.util.Map;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import jp.co.aforce.bean.Users;
+import jp.co.aforce.dao.CartDAO;
 import jp.co.aforce.dao.UsersDAO;
 import jp.co.aforce.servlet.UserFrontController;
 import jp.co.aforce.validator.UsersValidatorSet;
@@ -16,6 +18,8 @@ public class LoginAction extends Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		// セッションカート取得
+		Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		Users loginusercheck = new Users();
@@ -66,7 +70,18 @@ public class LoginAction extends Action {
 				//フィルターで飛ばされた場合
 				if (redirect != null) {
 					session.removeAttribute("redirect"); // 使い終わったら消す
-					System.out.println(redirect);
+
+					//カートDBにsessionカートをマージ
+					if (cart != null) {
+						CartDAO cdao = new CartDAO();
+						for (String productId : cart.keySet()) {
+							int quantity = cart.get(productId);
+							cdao.upsertCart(loginuser.getMemberId(), productId, quantity);
+						}
+						//マージ後カートセッション削除
+						session.removeAttribute("cart");
+					}
+
 					response.sendRedirect(redirect);
 					return null;
 				}

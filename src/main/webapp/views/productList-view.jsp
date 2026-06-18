@@ -81,12 +81,14 @@
 								</p>
 							</c:otherwise>
 						</c:choose>
-						<p>${p.price}円</p>
-						<form action="${pageContext.request.contextPath}/UserCartAdd.action" method="post">
+						<p>
+							<fmt:formatNumber value="${p.price}" pattern="#,###" />円(税込)
+						</p>
+						<form action="${pageContext.request.contextPath}/CartAdd.action" method="post">
 							<input type="hidden" name="productId" value="${p.productId}">
 							<label>個数</label>
 							<select name="quantity">
-								<c:forEach begin="1" end="10" var="i">
+								<c:forEach begin="1" end="20" var="i">
 									<option value="${i}">${i}</option>
 								</c:forEach>
 							</select>

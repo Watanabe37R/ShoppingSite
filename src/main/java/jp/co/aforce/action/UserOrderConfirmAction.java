@@ -11,7 +11,7 @@ import jp.co.aforce.bean.Carts;
 import jp.co.aforce.bean.Users;
 import jp.co.aforce.dao.CartDAO;
 
-public class UserCartViewAction extends Action {
+public class UserOrderConfirmAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,28 +22,10 @@ public class UserCartViewAction extends Action {
 		List<Carts> list = new ArrayList<>();
 
 		list = dao.getCartByUser(user.getMemberId());
-
 		request.setAttribute("cartList", list);
 
-		return "userCart-view.jsp";
+		return "userOrder-view.jsp";
 
 	}
 
 }
-//参考：以下はセッションで扱う際のコード
-/*HttpSession session = request.getSession();
-
-Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
-
-List<Products> list = new ArrayList<>();
-
-if (cart != null) {
-	ProductDAO dao = new ProductDAO();
-
-	for (String productId : cart.keySet()) {
-		Products product = dao.findProductInfoById(productId);
-		//数量セット
-		product.setQuantity(cart.get(productId)); 
-		list.add(product);
-	}
-}*/
