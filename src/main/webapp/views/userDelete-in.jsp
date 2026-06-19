@@ -19,7 +19,7 @@
 		<div class="account-container">
 			<h2 style="color: red;">アカウントの削除</h2>
 			<p>本当に削除していいですか？</p>
-			<p><a class="main" href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報ページへ戻る</a></p> 
+			<p><a class="main" href="${pageContext.request.contextPath}/UserMenu.action">会員情報ページへ戻る</a></p> 
 			<p><a class="main" href="${pageContext.request.contextPath}/views/Top.action">トップへ戻る</a></p>
 			<hr>
 			<p><a class="important" href="${pageContext.request.contextPath}/UserDelete.action">アカウントの削除</a></p>

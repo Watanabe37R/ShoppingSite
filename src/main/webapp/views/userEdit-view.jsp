@@ -31,7 +31,7 @@
 				<input type="hidden" name="mode" value="edit">
 				<input type="submit" value="本人情報の編集">
 			</form>
-			<a href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報ページへ戻る</a>
+			<a href="${pageContext.request.contextPath}/UserMenu.action">会員情報ページへ戻る</a>
 			<hr>
 			<a href="${pageContext.request.contextPath}/Top.action">トップページへ戻る</a>
 		</div>

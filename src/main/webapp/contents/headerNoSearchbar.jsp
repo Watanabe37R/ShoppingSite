@@ -24,7 +24,7 @@
 					<div class="menu">
 						<a href="#">お知らせ</a>
 						<a href="${pageContext.request.contextPath}/UserCartView.action">カート</a>
-						<a href="${pageContext.request.contextPath}/views/user-menu.jsp">会員情報</a>
+						<a href="${pageContext.request.contextPath}/UserMenu.action">会員情報</a>
 						<a href="${pageContext.request.contextPath}/views/logout-in.jsp" class="btn-highlight">ログアウト</a>
 					</div>
 				</c:otherwise>

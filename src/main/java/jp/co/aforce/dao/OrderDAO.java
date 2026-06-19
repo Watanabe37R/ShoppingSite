@@ -9,6 +9,7 @@ import java.util.List;
 
 import jp.co.aforce.bean.Carts;
 import jp.co.aforce.bean.OrderDetails;
+import jp.co.aforce.bean.Orders;
 
 public class OrderDAO extends DAO {
 
@@ -45,6 +46,7 @@ public class OrderDAO extends DAO {
 			ps.executeUpdate();
 		}
 	}
+
 	/*
 	 * 購入商品取得
 	 */
@@ -82,6 +84,40 @@ public class OrderDAO extends DAO {
 					item.setImageUrl(rs.getString("IMAGE_URL"));
 
 					list.add(item);
+				}
+			}
+		}
+		return list;
+	}
+
+	public List<Orders> getOrders(String uID) throws Exception {
+		List<Orders> list = new ArrayList<>();
+
+		String sql = """
+				  SELECT
+				      ORDER_ID,
+				      ORDER_DATE,
+				      STATUS
+				    FROM orders
+				    WHERE MEMBER_ID = ?
+				    ORDER BY ORDER_DATE DESC
+				""";
+
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+
+			ps.setString(1, uID);
+
+			try (ResultSet rs = ps.executeQuery()) {
+
+				while (rs.next()) {
+					Orders order = new Orders();
+
+					order.setOrderId(rs.getInt("ORDER_ID"));
+					order.setOrderDate(rs.getTimestamp("ORDER_DATE"));
+					order.setStatus(rs.getInt("STATUS"));
+
+					list.add(order);
 				}
 			}
 		}

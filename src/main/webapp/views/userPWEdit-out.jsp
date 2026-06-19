@@ -18,7 +18,7 @@
 	<main>
 		<div class="account-container">
 			<h2>パスワードを変更しました。</h2>
-			<p><a href="user-menu.jsp">会員情報ページへ戻る</a></p>
+			<p><a href="${pageContext.request.contextPath}/UserMenu.action">会員情報ページへ戻る</a></p>
 			<p><a href="${pageContext.request.contextPath}/Top.action">ホームへ戻る</a>
 		</div>
 	</main>

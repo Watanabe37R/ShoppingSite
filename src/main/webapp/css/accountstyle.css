@@ -89,16 +89,6 @@
 	transform: translateY(-1px);
 }
 
-/* ===== 履歴エリア（空状態） ===== */
-.history-empty {
-	margin-top: 10px;
-	font-size: 13px;
-	color: #888;
-	background: #f5f9fc;
-	padding: 10px;
-	border-radius: 8px;
-}
-
 .name {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -208,4 +198,25 @@ button.main:hover {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 5px 20px;
+}
+
+/* ===== 履歴エリア ===== */
+.history-empty {
+	margin-top: 10px;
+	font-size: 13px;
+	color: #888;
+	background: #f5f9fc;
+	padding: 10px;
+	border-radius: 8px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-item a {
+    text-decoration: none;
+    color: #333;
 }

@@ -46,7 +46,7 @@ public class UserFrontController extends HttpServlet {
 			if (pass == null) {
 				return; // JSON用
 			} else if (pass.endsWith("-error.jsp") || pass.endsWith("-check.jsp") || pass.endsWith("-in.jsp")
-					|| pass.endsWith("-view.jsp") || pass.endsWith("top.jsp")) {
+					|| pass.endsWith("-view.jsp") || pass.endsWith("top.jsp") || pass.endsWith("user-menu.jsp")) {
 				request.getRequestDispatcher("views/" + pass).forward(request, response);
 			} else {
 				if (pass.endsWith(".action")) {
