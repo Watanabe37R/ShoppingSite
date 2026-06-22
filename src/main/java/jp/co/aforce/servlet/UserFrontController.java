@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import jp.co.aforce.action.Action;
  * Servlet implementation class UserFrontController
  */
 @WebServlet("*.action")
+@MultipartConfig
 public class UserFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static Map<String, HttpSession> usersSession = new ConcurrentHashMap<>();

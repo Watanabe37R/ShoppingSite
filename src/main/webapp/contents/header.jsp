@@ -38,7 +38,7 @@
 				<c:when test="${loginuser.manager == 1}">
 					<div class="menu">
 						<a href="#">お知らせ</a>
-						<a href="#">管理情報</a>
+						<a href="${pageContext.request.contextPath}/views/managerMaster-menu.jsp">管理情報</a>
 						<a href="${pageContext.request.contextPath}/views/logout-in.jsp" class="btn-highlight">ログアウト</a>
 					</div>
 				</c:when>

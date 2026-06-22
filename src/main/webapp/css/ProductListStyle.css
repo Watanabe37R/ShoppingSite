@@ -63,26 +63,32 @@ main {
 }
 
 
-/*評価の☆*/
-.stars {
-    --rating: 0;
-    font-size: 18px;
-    font-family: Arial;
-    position: relative;
+/* ===== ボタン共通 ===== */
+.btn {
     display: inline-block;
-    line-height: 1;
-    letter-spacing: 0px;
+    padding: 6px 12px;
+    margin: 5px 5px 0 0;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.2s;
 }
-.stars::before {
-    content: "★★★★★";
-    color: #ccc;
+
+/* hover時 */
+.btn:hover {
+    opacity: 0.8;
 }
-.stars::after {
-    content: "★★★★★";
-    color: gold;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(var(--rating) / 5 * 100%);
-    overflow: hidden;
+
+/* ===== 個別色 ===== */
+.register-btn {
+    background-color: #0000EE;
+}
+
+.edit-btn {
+    background-color: #2e7d32;
+}
+
+.delete-btn {
+    background-color: #A83E3E;
 }

@@ -137,13 +137,124 @@ public class ProductDAO extends DAO {
 					product.setProductName(rs.getString("PRODUCT_NAME"));
 					product.setPrice(rs.getInt("PRICE"));
 					product.setMakerId(rs.getString("MAKER_ID"));
+					//product.setTaxClass(rs.getInt("TAX_CLASS"));
+					//product.setTax(rs.getInt("TAX"));
 					product.setCategoryId(rs.getString("CATEGORY_ID"));
 					product.setImageUrl(rs.getString("IMAGE_URL"));
+					//product.setOnSale(rs.getInt("ON_SALE") == 1);
+					//product.setStock(rs.getInt("STOCK"));
 				}
 			}
 		}
-
 		return product;
 	}
 
+	public Products findProductInfoByIdForManager(String productId) throws Exception {
+
+		Products product = null;
+		String sql = """
+				SELECT p.*, m.MAKER_NAME, c.CATEGORY_NAME
+				FROM product p
+				JOIN maker m ON p.MAKER_ID = m.MAKER_ID
+				JOIN category c ON p.CATEGORY_ID = c.CATEGORY_ID
+				WHERE p.PRODUCT_ID = ?
+								""";
+
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setString(1, productId);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					product = new Products();
+					product.setProductId(rs.getString("PRODUCT_ID"));
+					product.setProductName(rs.getString("PRODUCT_NAME"));
+					product.setPrice(rs.getInt("PRICE"));
+					product.setMakerId(rs.getString("MAKER_ID"));
+					product.setMakerName(rs.getString("MAKER_NAME"));
+					product.setTaxClass(rs.getInt("TAX_CLASS"));
+					product.setTax(rs.getInt("TAX"));
+					product.setCategoryId(rs.getString("CATEGORY_ID"));
+					product.setCategoryName(rs.getString("CATEGORY_NAME"));
+					product.setImageUrl(rs.getString("IMAGE_URL"));
+					product.setOnSale(rs.getInt("ON_SALE") == 1);
+					product.setStock(rs.getInt("STOCK"));
+					product.setAbstractText(rs.getString("ABSTRACT"));
+				}
+			}
+		}
+		return product;
+	}
+
+	public void insertProduct(Products product) throws Exception {
+
+		String sql = "INSERT INTO product (" +
+				"PRODUCT_ID, PRODUCT_NAME, MAKER_ID, PRICE, " +
+				"TAX_CLASS, TAX, CATEGORY_ID, IMAGE_URL, " +
+				"ON_SALE, STOCK, ABSTRACT" +
+				") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+
+			int i = 1;
+
+			ps.setString(i++, product.getProductId());
+			ps.setString(i++, product.getProductName());
+			ps.setString(i++, product.getMakerId());
+			ps.setInt(i++, product.getPrice());
+			ps.setInt(i++, product.getTaxClass());
+			ps.setInt(i++, product.getTax());
+			ps.setString(i++, product.getCategoryId());
+			ps.setString(i++, product.getImageUrl());
+			ps.setInt(i++, product.isOnSale() ? 1 : 0);
+			ps.setInt(i++, product.getStock());
+			ps.setString(i++, product.getAbstractText());
+
+			ps.executeUpdate();
+		}
+	}
+
+	public void updateProduct(Products product) throws Exception {
+
+		String sql = "UPDATE product SET " +
+				"PRODUCT_NAME = ?, MAKER_ID = ?, PRICE = ?, " +
+				"TAX_CLASS = ?, TAX = ?, CATEGORY_ID = ?, " +
+				"IMAGE_URL = ?, ON_SALE = ?, STOCK = ?, ABSTRACT = ? " +
+				"WHERE PRODUCT_ID = ?";
+
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+
+			int i = 1;
+
+			ps.setString(i++, product.getProductName());
+			ps.setString(i++, product.getMakerId());
+			ps.setInt(i++, product.getPrice());
+			ps.setInt(i++, product.getTaxClass());
+			ps.setInt(i++, product.getTax());
+			ps.setString(i++, product.getCategoryId());
+			ps.setString(i++, product.getImageUrl());
+			ps.setInt(i++, product.isOnSale() ? 1 : 0);
+			ps.setInt(i++, product.getStock());
+			ps.setString(i++, product.getAbstractText());
+
+			ps.setString(i++, product.getProductId());
+
+			ps.executeUpdate();
+		}
+	}
+
+	public void deleteProduct(String productId) throws Exception {
+
+		String sql = "DELETE FROM product WHERE PRODUCT_ID = ?";
+
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+
+			ps.setString(1, productId);
+
+			ps.executeUpdate();
+		}
+	}
 }

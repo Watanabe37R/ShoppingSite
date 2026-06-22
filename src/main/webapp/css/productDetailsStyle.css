@@ -1,0 +1,243 @@
+@charset "UTF-8";
+
+/* ===== 全体 ===== */
+body {
+	margin: 0;
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: linear-gradient(0deg, #eef6fb, #dbe9f4);
+	padding: 20px;
+}
+
+/* ===== メインエリア ===== */
+main {
+	margin-top: 20px;
+	background: white;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	background-color: antiquewhite;
+}
+
+h2.register {
+	color: #0000EE;
+}
+
+h2.edit {
+	color: #2e7d32;
+}
+
+h2.delete {
+	color: #A83E3E;
+}
+
+h2.view {
+	color: #000000;
+}
+
+
+.item-container {
+	padding: 30px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	margin: auto;
+}
+
+/* 上段 */
+.top-area {
+	display: flex;
+	gap: 30px;
+	margin-bottom: 30px;
+}
+
+.image-area img {
+	width: 250px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+/* 右側（サマリー） */
+.summary-area {
+	flex: 1;
+}
+
+.summary-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 20px;
+}
+
+/* サマリー内の項目 */
+.summary-item label {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.summary-item input {
+	width: 100%;
+	padding: 6px;
+	margin-top: 3px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+/* 下段 */
+.detail-area {
+	border-top: 1px solid #ccc;
+	padding-top: 20px;
+}
+
+/* グリッドで詳細表示 */
+.detail-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 20px;
+}
+
+.detail-item label {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.detail-item input {
+	width: 100%;
+	padding: 6px;
+	margin-top: 3px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.full {
+	grid-column: span 2;
+}
+
+.button-area {
+	margin-top: 25px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+
+}
+
+.button-area a {
+	padding: 12px 24px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	background: linear-gradient(135deg, rgb(231, 231, 231), rgb(192, 192, 192));
+	color: rgb(0, 0, 0);
+	cursor: pointer;
+	transition: 0.2s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	height: 24px;
+}
+/* ホバー */
+.button-area a:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* メインボタン */
+.main-btn {
+	padding: 12px 24px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #4CAF50, #2e7d32);
+	color: white;
+	cursor: pointer;
+	transition: 0.2s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ホバー */
+.main-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* 押したとき */
+.main-btn:active {
+	transform: translateY(1px);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.edit-btn {
+	padding: 12px 24px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #4CAF50, #2e7d32);
+	color: white;
+	cursor: pointer;
+	transition: 0.2s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.delete-btn {
+	padding: 12px 24px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #e53935, #A83E3E);
+	color: white;
+	cursor: pointer;
+	transition: 0.2s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.register-btn {
+	padding: 12px 24px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #2196F3, #0000EE);
+	color: white;
+	cursor: pointer;
+	transition: 0.2s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.detail-item textarea {
+	width: 100%;
+	min-height: 120px;
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	resize: vertical;
+}
+
+.radio-group {
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+
+.radio-group label {
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+/* ラジオ少し大きく */
+.radio-group input[type="radio"] {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+
+.radio-group label:hover {
+	opacity: 0.8;
+}

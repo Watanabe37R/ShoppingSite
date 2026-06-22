@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/* ===== 全体 ===== */
+body {
+	margin: 0;
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: linear-gradient(0deg, #eef6fb, #dbe9f4);
+	padding: 20px;
+}
+
+/* ===== メインエリア ===== */
+main {
+	margin-top: 20px;
+	background: white;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.top-bar input[type="text"] {
+    width: 220px;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.top-bar button {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px solid #888;
+    background: #888;
+    color: white;
+    cursor: pointer;
+}
+
+.top-bar button:hover {
+    opacity: 0.8;
+}
+
+/* ボタン */
+.btn {
+    padding: 6px 12px;
+    background: #888;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+	height:24px
+}
+
+/* テーブル */
+.master-table td {
+    text-align: left;
+	padding: 0;
+}
+
+.master-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.master-table .contents {
+	display: inline-block;
+	padding: 4px 10px;
+	text-decoration: none;
+	color: rgb(0, 64, 64);
+}
+
+.master-table .contents:hover {
+	color:#eef6fb;
+    background-color: rgb(0, 128, 192);
+}
+
+.master-table th,
+.master-table td {
+    border: 1px solid #000;
+    padding: 6px;
+}
+
+/* 操作リンク */
+.btn-edit, .btn-delete {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    margin-right: 5px;
+}
+
+/* 編集 */
+.btn-edit {
+    background-color: #2e7d32;
+}
+
+/* 削除 */
+.btn-delete {
+    background-color: #A83E3E;
+}
+
+
+.btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
