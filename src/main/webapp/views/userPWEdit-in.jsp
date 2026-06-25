@@ -20,7 +20,8 @@
 			<h2>古いパスワードと新しいパスワードを入力してください</h2>
 			<form action="${pageContext.request.contextPath}/UserPWEdit.action" method="post">
 				現在のパスワード<br>
-				<input type="password" name="pwOld" required>
+				<input type="password" id="pwOld" name="pwOld" required>
+				<span id="pwOldM"></span>
 				<hr>
 				新しいパスワード<br>
 				<input type="password" id="pw" name="pw" required>
@@ -29,10 +30,16 @@
 				新しいパスワード(確認)<br>
 				<input type="password" id="pwConfirm" name="pwConfirm" required>
 				<span id="pwConfirmM"></span>
-				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
 				<hr>
 				<input type="submit" id="submitBtn" value="登録">
 			</form>
+			<script src="${pageContext.request.contextPath}/js/userValidation.js"></script>
+			<script>
+				setupValidation({
+				pwOld:true,
+				pwConfirm:true
+				});
+			</script>
 			<a href="${pageContext.request.contextPath}/UserMenu.action">会員情報ページへ戻る</a>
 			<hr>
 			<a href="${pageContext.request.contextPath}/Top.action">トップページへ戻る</a>

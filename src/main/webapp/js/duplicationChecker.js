@@ -8,10 +8,6 @@ const idMsg = document.getElementById("idM");
 const mailInput = document.getElementById("mail");
 const mailMsg = document.getElementById("mailM");
 
-
-
-
-
 function setError(el, msg) {
 	el.textContent = msg;
 	el.style.color = "red";

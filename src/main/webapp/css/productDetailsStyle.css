@@ -241,3 +241,28 @@ h2.view {
 .radio-group label:hover {
 	opacity: 0.8;
 }
+
+.reference-group {
+	display: flex;
+	gap: 0px;
+	align-items: center;
+}
+
+.reference-group label {
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+/* ラジオ少し大きく */
+.reference-group button {
+	cursor: pointer;
+	width:80%;
+}
+
+.reference-group button:hover {
+	opacity: 0.8;
+}

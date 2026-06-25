@@ -1,0 +1,324 @@
+@charset "UTF-8";
+@charset "UTF-8";
+
+/* ===== 全体 ===== */
+body {
+	margin: 0;
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: linear-gradient(0deg, #eef6fb, #dbe9f4);
+	padding: 20px;
+}
+
+/* ===== メインエリア ===== */
+main {
+	margin-top: 20px;
+	background: white;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	background-color: antiquewhite;
+}
+
+.item-container {
+	padding: 30px;
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	margin: auto;
+}
+
+/* 上段 */
+.top-area {
+	display: flex;
+	gap: 30px;
+	margin-bottom: 30px;
+}
+
+.image-area {
+    flex: 0 0 450px;
+}
+
+.image-area img {
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
+}
+
+/* 右側（サマリー） */
+.summary-area {
+	flex: 1;
+}
+
+.summary-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 20px;
+}
+
+/* サマリー内の項目 */
+.summary-item label {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.summary-item input {
+	width: 100%;
+	padding: 6px;
+	margin-top: 3px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.detail-item label {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.detail-item input {
+	width: 100%;
+	padding: 6px;
+	margin-top: 3px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.description {
+    margin-bottom: 30px;
+}
+
+.full {
+	grid-column: span 2;
+}
+
+.button-area {
+	margin-top: 25px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+
+}
+
+.button-area a {
+	padding: 12px 24px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	background: linear-gradient(135deg, rgb(231, 231, 231), rgb(192, 192, 192));
+	color: rgb(0, 0, 0);
+	cursor: pointer;
+	transition: 0.2s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	height: 24px;
+}
+
+/* ホバー */
+.button-area a:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* メインボタン */
+.main-btn {
+	padding: 12px 24px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 8px;
+	background: linear-gradient(135deg, #4CAF50, #2e7d32);
+	color: white;
+	cursor: pointer;
+	transition: 0.2s;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ホバー */
+.main-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* 押したとき */
+.main-btn:active {
+	transform: translateY(1px);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.description h4,
+.reviews h4 {
+    border-left: 5px solid #4CAF50;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-item textarea {
+	width: 100%;
+	min-height: 120px;
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	resize: vertical;
+}
+
+.radio-group {
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+
+.radio-group label {
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.reference-group {
+	display: flex;
+	gap: 0px;
+	align-items: center;
+}
+
+.reference-group label {
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+/* 商品名 */
+.product-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/* 価格 */
+.price {
+	font-size: 22px;
+	color: #e53935;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/* 評価 */
+.rating {
+	margin-bottom: 10px;
+}
+
+/* メーカー */
+.maker {
+	margin-bottom: 15px;
+	color: #555;
+}
+
+/* 購入ボックス */
+.buy-box {
+	background: #f1f8ff;
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid #cfe3ff;
+	margin-top: 15px;
+}
+
+.buy-box select {
+	margin: 0 10px;
+	padding: 5px;
+}
+
+/* カートボタン */
+.buy-box input[type="submit"] {
+	display: block;
+	margin-top: 10px;
+	width: 100%;
+	padding: 10px;
+	background: linear-gradient(135deg, #ff9800, #f57c00);
+	border: none;
+	border-radius: 6px;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.buy-box input[type="submit"]:hover {
+	opacity: 0.9;
+}
+
+/* 下段レイアウト */
+.detail-area {
+	display: block;
+	gap: 30px;
+	margin-top: 30px;
+	border-top: 1px solid #ccc;
+	padding-top: 20px;
+}
+
+/* 説明 */
+.description {
+	flex: 1;
+}
+
+.description p {
+	line-height: 1.6;
+}
+
+/* レビュー */
+.reviews {
+	flex: 1;
+}
+
+/* レビューカード */
+.review-card {
+	background: #fafafa;
+	padding: 10px;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+}
+
+/* コメント */
+.review-text {
+	margin: 5px 0;
+}
+
+/* 日付 */
+.review-date {
+	font-size: 12px;
+	color: #777;
+}
+
+.stars {
+	--star-size: 18px;
+	--star-color: #ccc;
+	--star-fill: gold;
+
+	display: inline-block;
+	font-size: var(--star-size);
+	line-height: 1;
+	position: relative;
+}
+
+.stars::before {
+	content: "★★★★★";
+	color: var(--star-color);
+}
+
+.stars::after {
+	content: "★★★★★";
+	color: var(--star-fill);
+
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	width: calc(var(--rating) / 5 * 100%);
+	overflow: hidden;
+	white-space: nowrap;
+}

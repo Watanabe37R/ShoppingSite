@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import jp.co.aforce.bean.Products;
 import jp.co.aforce.dao.ProductDAO;
+import jp.co.aforce.validator.SearchValidator;
 
 public class ProductListAction extends Action {
 
@@ -16,6 +17,15 @@ public class ProductListAction extends Action {
 		String keyword = request.getParameter("keyword");
 		if (keyword == null) {
 			keyword = "";
+		}
+		if (!keyword.isEmpty()) {
+			SearchValidator validate = new SearchValidator();
+			List<String> errors = validate.serarchValidate(keyword);
+			//エラーがある場合エラー画面へ
+			if (!errors.isEmpty()) {
+				request.setAttribute("errors", errors);
+				return "cart-error.jsp";
+			}
 		}
 		keyword = keyword.replace("　", " ");
 		String order = request.getParameter("order");

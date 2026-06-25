@@ -66,8 +66,8 @@
 			<div class="products">
 				<c:forEach var="p" items="${productList}">
 					<div class="card">
-						<div class="img"><img src="${pageContext.request.contextPath}/${p.imageUrl}"></div>
-						<p>${p.productName}</p>
+						<div class="img"><a href="Product.action?productId=${p.productId}"><img src="${pageContext.request.contextPath}/${p.imageUrl}"></a></div>
+						<p><a href="Product.action?productId=${p.productId}">${p.productName}</a></p>
 						<p>${p.makerName}</p>
 						<c:choose>
 							<c:when test="${p.reviewCount == 0}">

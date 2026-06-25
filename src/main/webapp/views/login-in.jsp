@@ -23,11 +23,16 @@
 				<span id="idM"></span>
 				<p>パスワード<input type="password" id="pw" name="pw" required></p>
 				<span id="pwM"></span>
-				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
 				<input type="hidden" name="force" value="${param.force}">
 				<input type="submit" id="submitBtn" value="ログイン">
 			</form>
-			<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
+			<script src="${pageContext.request.contextPath}/js/userValidation.js"></script>
+			<script>
+				setupValidation({
+				id: true,
+				pw: true
+				});
+			</script>
 			<hr>
 			始めてご利用の方
 			<form action="${pageContext.request.contextPath}/views/registration-in.jsp" method="post">

@@ -23,9 +23,10 @@
 					</option>
 				</c:forEach>
 			</select>
-			<input type="text" name="keyword" value="${keyword}">
+			<input type="text" id="search" name="keyword" value="${keyword}">
 			<input type="submit" value="検索">
 		</form>
+		<script src="${pageContext.request.contextPath}/js/searchValidation.js" defer></script>
 	</c:if>
 </div>
 

@@ -28,6 +28,7 @@
 			<h3>メーカーマスタ</h3>
 			<div class="link-buttons">
 				<form action="${pageContext.request.contextPath}/ManagerMakerList.action" method="get">
+				<input type="hidden" name="mode" value="view">
 				<input type="submit" value="メーカーマスタ" class="link-btn">
 				</form>
 			</div>
@@ -35,6 +36,7 @@
 			<h3>カテゴリマスタ</h3>
 			<div class="link-buttons">
 				<form action="${pageContext.request.contextPath}/ManagerCategoryList.action" method="get">
+				<input type="hidden" name="mode" value="view">
 				<input type="submit" value="カテゴリマスタ" class="link-btn">
 				</form>
 			</div>
@@ -48,7 +50,7 @@
 
 			<h3>お知らせマスタ</h3>
 			<div class="link-buttons">
-				<form action="${pageContext.request.contextPath}/ManagerInfomationList.action" method="get">
+				<form action="${pageContext.request.contextPath}/ManagerNoticeList.action" method="get">
 				<input type="submit" value="お知らせマスタ" class="link-btn">
 				</form>
 			</div>

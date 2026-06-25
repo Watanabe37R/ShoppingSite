@@ -5,6 +5,7 @@ const id = document.getElementById("id");
 const mail = document.getElementById("mail");
 const mailConfirm = document.getElementById("mailConfirm");
 const pw = document.getElementById("pw");
+const pwOld = document.getElementById("pwOld");
 const pwConfirm = document.getElementById("pwConfirm");
 const lname = document.getElementById("lname");
 const fname = document.getElementById("fname");
@@ -13,6 +14,7 @@ const idM = document.getElementById("idM");
 const mailM = document.getElementById("mailM");
 const mailConfirmM = document.getElementById("mailConfirmM");
 const pwM = document.getElementById("pwM");
+const pwOldM = document.getElementById("pwOldM");
 const pwConfirmM = document.getElementById("pwConfirmM");
 const lnameM = document.getElementById("lnameM");
 const fnameM = document.getElementById("fnameM");
@@ -29,244 +31,305 @@ const pwRegex = /^[a-zA-Z0-9]{8,32}$/;
 const nameRegex = /^[\p{L}\p{M}\p{N}\sー々・]{1,32}$/u;
 const addressRegex = /^.{1,128}$/;
 const noDangerousChars = /^[^<>"'&]+$/;
-
-// =====================
-// 共通関数
-// =====================
+//エラー定義
 function setError(el, msg) {
+	if (!el) return;
 	el.textContent = msg;
 	el.style.color = "red";
 }
 
 function clearError(el) {
+	if (!el) return;
 	el.textContent = "";
 	el.style.color = "";
 }
 
-const state = {
-	id: !id,
-	mail: !mail,
-	mailConfirm: !mailConfirm,
-	pw: !pw,
-	pwConfirm: !pwConfirm,
-	lname: !lname,
-	fname: !fname,
-	address: !address,
-	//重複チェックがあるとき
-	idDuplicate: true,
-	mailDuplicate: true
-};
+function setupValidation(config) {
+	const state = {};
+	const touched = {};
 
-// =====================
-// 個別チェック
-// =====================
 
-// ログインID
-function checkId() {
-	const value = id.value.trim();
-
-	if (value === "") {
-		clearError(idM);
-		state.id = false;
-	} else if (!idRegex.test(value)) {
-		setError(idM, "ログインIDは1〜10文字の英数字で入力してください");
-		state.id = false;
-	} else {
-		clearError(idM);
-		state.id = true;
-	}
-}
-
-// メール
-function checkMail() {
-	const value = mail.value.trim();
-	if (value === "") {
-		clearError(mailM);
-		state.mail = false;
-	} else if (!noDangerousChars.test(value)) {
-		setError(mailM, "使用できない文字が含まれています");
-		state.mail = false;
-	} else if (!noFullWidth.test(value)) {
-		setError(mailM, "メールアドレスは半角で入力してください");
-		state.mail = false;
-	} else if (!mailRegex.test(value)) {
-		setError(mailM, "正しいメール形式で入力してください");
-		state.mail = false;
-	} else {
-		clearError(mailM);
-		state.mail = true;
+	function updateSubmitState() {
+		const allValid = Object.values(state).every(v => v === true);
+		submitBtn.disabled = !allValid;
 	}
 
+	function initField(key, checkFn, elements) {
+		const input = elements.input;
+		const message = elements.message;
 
-	// 確認チェック
-	const confirmValue = mailConfirm.value.trim();
+		state[key] = false;
 
-	if (confirmValue === "") {
-		clearError(mailConfirmM);
+		if (!input) return;
+
+		const run = () => {
+			checkFn(input, message, state, touched[key]);
+			updateSubmitState();
+		};
+
+		// 入力されたらフラグON
+		input.addEventListener("input", () => {
+			touched[key] = true;
+			run();
+		});
+
+		// フォーカス外れたらチェック
+		input.addEventListener("blur", () => {
+			touched[key] = true;
+			run();
+		});
+
+		run(); // 初期チェック
+	}
+
+	// =========================
+	// 各フィールド定義
+	// =========================
+	//IDチェック
+	if (config.id) {
+		initField("id", (el, msg, state, touched) => {
+			const v = el.value.trim();
+			if (v === "") {
+				clearError(msg);
+				state.id = false;
+			} else if (!idRegex.test(v)) {
+				if (touched) setError(msg, "ログインIDは1〜10文字の半角英数字で入力してください");
+				state.id = false;
+			} else {
+				clearError(msg);
+				state.id = true;
+			}
+		}, { input: id, message: idM });
+	}
+	//メールチェック
+	if (config.mail) {
+		initField("mail", (el, msg, state, touched) => {
+			const v = el.value.trim();
+
+			if (v === "") {
+				clearError(msg);
+				state.mail = false;
+			} else if (!mailRegex.test(v)) {
+				if (touched) setError(msg, "メール形式が不正です。128文字以内で半角英数字等で入力してください");
+				state.mail = false;
+			} else {
+				clearError(msg);
+				state.mail = true;
+			}
+		}, { input: mail, message: mailM });
+	}
+	//メール一致チェック
+	if (config.mailConfirm && mail && mailConfirm) {
 		state.mailConfirm = false;
-	} else if (value !== confirmValue) {
-		setError(mailConfirmM, "一致していません");
-		state.mailConfirm = false;
-	} else {
-		clearError(mailConfirmM);
-		state.mailConfirm = true;
+
+		const run = () => {
+			const touchedFlag = touched.mail || touched.mailConfirm;
+			const v = mail.value.trim();
+			const cv = mailConfirm.value.trim();
+
+			if (!mailRegex.test(v)) {
+				if (touchedFlag) setError(mailM, "メール形式が不正です。128文字以内で半角英数字等で入力してください");
+				state.mailConfirm = false;
+			} else {
+				clearError(mailM);
+			}
+
+			if (cv === "") {
+				clearError(mailConfirmM);
+				state.mailConfirm = false;
+			} else if (v !== cv) {
+				if (touchedFlag) setError(mailConfirmM, "一致していません");
+				state.mailConfirm = false;
+			} else {
+				clearError(mailConfirmM);
+				state.mailConfirm = true;
+			}
+
+			updateSubmitState();
+		};
+
+		mail.addEventListener("input", () => {
+		  touched.mail = true;
+		  run();
+		});
+
+		mailConfirm.addEventListener("input", () => {
+		  touched.mailConfirm = true;
+		  run();
+		});
+
+		run();
 	}
-}
+	//PWチェック
+	if (config.pw) {
+		initField("pw", (el, msg, state, touched) => {
+			const v = el.value.trim();
 
-// パスワード
-function checkPW() {
-	const value = pw.value.trim();
-
-	if (value === "") {
-		clearError(pwM);
-		state.pw = false;
-	} else if (!pwRegex.test(value)) {
-		setError(pwM, "パスワードは8〜32文字の英数字で入力してください");
-		state.pw = false;
-	} else {
-		clearError(pwM);
-		state.pw = true;
+			if (!pwRegex.test(v)) {
+				if (touched) setError(msg, "パスワードは、8〜32文字の半角英数字で入力してください");
+				state.pw = false;
+			} else {
+				clearError(msg);
+				state.pw = true;
+			}
+		}, { input: pw, message: pwM });
 	}
-
-	// 確認チェック
-	// confirmがない場合はスキップ
-	if (!pwConfirm) return;
-
-	const confirmValue = pwConfirm.value.trim();
-
-	if (confirmValue === "") {
-		clearError(pwConfirmM);
+	//PW一致チェック
+	if (config.pwConfirm && pw && pwConfirm) {
 		state.pwConfirm = false;
-	} else if (value !== confirmValue) {
-		setError(pwConfirmM, "一致していません");
-		state.pwConfirm = false;
-	} else {
-		clearError(pwConfirmM);
-		state.pwConfirm = true;
+
+		const run = () => {
+			const touchedPWFlag = touched.pw || touched.pwConfirm;
+			const v = pw.value.trim();
+			const cv = pwConfirm.value.trim();
+
+			if (!pwRegex.test(v)) {
+				if (touchedPWFlag) setError(pwM, "パスワードは、8〜32文字の半角英数字で入力してください");
+				state.pwConfirm = false;
+			} else {
+				clearError(pwM);
+			}
+
+			if (cv === "") {
+				clearError(pwConfirmM);
+				state.pwConfirm = false;
+			} else if (v !== cv) {
+				if (touchedPWFlag) setError(pwConfirmM, "一致していません");
+				state.pwConfirm = false;
+			} else {
+				clearError(pwConfirmM);
+				state.pwConfirm = true;
+			}
+
+			updateSubmitState();
+		};
+		
+		pw.addEventListener("input", () => {
+		  touched.pw = true;
+		  run();
+		});
+
+		pwConfirm.addEventListener("input", () => {
+		  touched.pwConfirm = true;
+		  run();
+		});
+	
+		run();
+	}
+	//旧PWチェック
+	if (config.pwOld) {
+		initField("pwOld", (el, msg, state, touched) => {
+			const v = el.value.trim();
+
+			if (v === "") {
+				if (touched) setError(msg, "現在のパスワードを入力してください");
+				state.pwOld = false;
+
+			} else if (!pwRegex.test(v)) {
+				if (touched) setError(msg, "パスワードは、8〜32文字の半角英数字で入力してください");
+				state.pwOld = false;
+
+			} else {
+				clearError(msg);
+				state.pwOld = true;
+			}
+
+		}, { input: pwOld, message: pwOldM });
+	}
+	//名前チェック
+	if (config.name) {
+		initField("lname", (el, msg, state, touched) => {
+			const v = el.value.trim();
+			if (!nameRegex.test(v)) {
+				if (touched) setError(msg, "苗字は32文字以内で入力してください。なお、使用できない記号があります。");
+				state.lname = false;
+			} else {
+				clearError(msg);
+				state.lname = true;
+			}
+		}, { input: lname, message: lnameM });
+
+		initField("fname", (el, msg, state, touched) => {
+			const v = el.value.trim();
+			if (!nameRegex.test(v)) {
+				if (touched) setError(msg, "名前は32文字以内で入力してください。なお、使用できない記号があります。");
+				state.fname = false;
+			} else { 
+				clearError(msg);
+				state.fname = true;
+			}
+		}, { input: fname, message: fnameM });
+	}
+	//住所チェック
+	if (config.address) {
+		initField("address", (el, msg, state, touched) => {
+			const v = el.value.trim();
+			if (!addressRegex.test(v)||!noDangerousChars.test(v)) {
+				if (touched) setError(msg, "住所は128文字以内で入力してください。なお、使用できない記号があります。");
+				state.address = false;
+			} else {
+				clearError(msg);
+				state.address = true;
+			}
+		}, { input: address, message: addressM });
+	}
+
+	//重複チェック
+	if (config.duplicate) {
+
+		if (config.id) state.idDuplicate = false;
+		if (config.mail || config.mailConfirm) state.mailDuplicate = false;
+
+		const checkDuplicate = async () => {
+			console.log("dup呼ばれた"); 
+			const idVal = id ? id.value : "";
+			const mailVal = mail ? mail.value : "";
+
+			const res = await fetch(
+				`${contextPath}/duplicationCheck.action?id=${encodeURIComponent(idVal)}&mail=${encodeURIComponent(mailVal)}`
+			);
+
+			const data = await res.json();
+
+			// ID
+			if ("idDuplicate" in state) {
+				state.idDuplicate = !data.idExists;
+
+				if (data.idExists) {
+					if (touched.id) setError(idM, "IDが重複しています。別のIDをお試しください。");
+				} else {
+					clearError(idM);
+				}
+			}
+
+			// mail
+			if ("mailDuplicate" in state) {
+				state.mailDuplicate = !data.mailExists;
+
+				if (data.mailExists) {
+					if (touched.mail) setError(mailM, "メールが重複しています。別のメールアドレスをお試しください。");
+				} else {
+					clearError(mailM);
+				}
+			}
+
+			updateSubmitState();
+		};
+
+		if (id) {
+			id.addEventListener("blur", () => {
+				touched.id = true;
+				checkDuplicate();
+			});
+		}
+		if (mail) {
+		  mail.addEventListener("blur", () => {
+		    touched.mail = true;
+		    checkDuplicate();
+		  });
+		}
 	}
 }
 
-// 名前系
-function checkName() {
-	const lnameVal = lname.value.trim();
-	const fnameVal = fname.value.trim();
-
-	if (lnameVal === "") {
-		clearError(lnameM);
-		state.lname = false;
-	} else if (!noDangerousChars.test(lnameVal)) {
-		setError(lnameM, "使用できない文字が含まれています");
-		state.lname = false;
-	} else if (!nameRegex.test(lnameVal)) {
-		setError(lnameM, "苗字は記号以外で1〜32文字で入力してください");
-		state.lname = false;
-	} else {
-		clearError(lnameM);
-		state.lname = true;
-	}
-
-	if (fnameVal === "") {
-		clearError(fnameM);
-		state.fname = false;
-	} else if (!noDangerousChars.test(fnameVal)) {
-		setError(fnameM, "使用できない文字が含まれています");
-		state.fname = false;
-	} else if (!nameRegex.test(fnameVal)) {
-		setError(fnameM, "名前は記号以外で1〜32文字で入力してください");
-		state.fname = false;
-	} else {
-		clearError(fnameM);
-		state.fname = true;
-	}
-}
-
-// 住所
-function checkAddress() {
-	const value = address.value.trim();
-
-	if (value === "") {
-		clearError(addressM);
-		state.address = false;
-	} else if (!noDangerousChars.test(value)) {
-		setError(addressM, "使用できない文字が含まれています");
-		state.address = false;
-	} else if (!addressRegex.test(value)) {
-		setError(addressM, "住所は記号以外で1〜128文字で入力してください");
-		state.address = false;
-	} else {
-		clearError(addressM);
-		state.address = true;
-	}
-}
-
-// =====================
-// 全体チェック（ボタン制御）
-// =====================
-function updateSubmitState() {
-	const allValid = Object.values(state).every(v => v === true);
-	submitBtn.disabled = !allValid;
-	console.log(state);
-}
 
 
-// =====================
-// イベント登録
-// =====================
-if (id) {
-	id.addEventListener("input", () => {
-		checkId();
-		updateSubmitState();
-	});
-}
-
-if (mail) {
-	mail.addEventListener("input", () => {
-		checkMail();
-		updateSubmitState();
-	});
-}
-
-if (mailConfirm) {
-	mailConfirm.addEventListener("input", () => {
-		checkMail();
-		updateSubmitState();
-	});
-}
-
-if (pw) {
-	pw.addEventListener("input", () => {
-		checkPW();
-		updateSubmitState();
-	});
-}
-
-if (pwConfirm) {
-	pwConfirm.addEventListener("input", () => {
-		checkPW();
-		updateSubmitState();
-	});
-}
-
-if (lname) {
-	lname.addEventListener("input", () => {
-		checkName();
-		updateSubmitState();
-	});
-}
-
-if (fname) {
-	fname.addEventListener("input", () => {
-		checkName();
-		updateSubmitState();
-	});
-}
-
-if (address) {
-	address.addEventListener("input", () => {
-		checkAddress();
-		updateSubmitState();
-	});
-}
-
-// 初期状態
-submitBtn.disabled = true;

@@ -33,7 +33,7 @@ public class UserEditAction extends Action {
 		//エラーがある場合エラー画面へ
 		if (!errors.isEmpty()) {
 			request.setAttribute("errors", errors);
-			return "userMailEdit-error.jsp";
+			return "userEdit-error.jsp";
 		}
 
 		if ("update".equals(mode)) {
@@ -43,7 +43,7 @@ public class UserEditAction extends Action {
 				if (dao.update(sId, editUser) == 1) {
 					//セッション更新
 					user.setLastName(lname);
-					return "userMailEdit-out.jsp";
+					return "userEdit-out.jsp";
 				} else {
 					errors.add("更新処理中にエラーが発生しました。"
 							+ "<br>操作をやり直してください。");
@@ -56,7 +56,7 @@ public class UserEditAction extends Action {
 		//他のボタン操作時
 		} else if ("back".equals(mode)) {
 			request.setAttribute("userInfo", editUser);
-			return "userMailEdit-in.jsp";
+			return "userEdit-in.jsp";
 		} else if ("cancel".equals(mode)) {
 			return "Top.action";
 		}

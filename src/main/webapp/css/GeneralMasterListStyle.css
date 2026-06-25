@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /* ===== 全体 ===== */
 body {
 	margin: 0;
@@ -16,53 +17,74 @@ main {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+h2 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+h2.view {
+	color: #000000
+}
+
+h2.create {
+	color: #0000EE;
+}
+
+h2.edit {
+	color: #2e7d32
+}
+
+h2.delete {
+	color: #A83E3E;
+}
+
 .top-bar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
 }
 
 .top-bar input[type="text"] {
-    width: 220px;
-    padding: 6px 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+	width: 220px;
+	padding: 6px 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 .top-bar button {
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 4px;
-    border: 1px solid #888;
-    background: #888;
-    color: white;
-    cursor: pointer;
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 4px;
+	border: 1px solid #888;
+	background: #888;
+	color: white;
+	cursor: pointer;
 }
 
 .top-bar button:hover {
-    opacity: 0.8;
+	opacity: 0.8;
 }
 
 /* ボタン */
 .btn {
-    padding: 6px 12px;
-    background: #888;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-	height:24px
+	padding: 6px 12px;
+	background: #0000EE;
+	color: white;
+	text-decoration: none;
+	border-radius: 4px;
+	height: 24px
 }
 
 /* テーブル */
 .master-table td {
-    text-align: left;
+	text-align: left;
 	padding: 0;
 }
 
 .master-table {
-    width: 100%;
-    border-collapse: collapse;
+	width: 100%;
+	border-collapse: collapse;
 }
 
 .master-table .contents {
@@ -73,38 +95,54 @@ main {
 }
 
 .master-table .contents:hover {
-	color:#eef6fb;
-    background-color: rgb(0, 128, 192);
+	color: #eef6fb;
+	background-color: rgb(0, 128, 192);
 }
 
 .master-table th,
 .master-table td {
-    border: 1px solid #000;
-    padding: 6px;
+	border: 1px solid #000;
+	padding: 6px;
 }
 
 /* 操作リンク */
-.btn-edit, .btn-delete {
-    display: inline-block;
-    padding: 4px 10px;
-    font-size: 13px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: white;
-    margin-right: 5px;
+.btn-edit,
+.btn-delete,
+.btn-create,
+.btn-view {
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 13px;
+	border-radius: 4px;
+	text-decoration: none;
+	color: white;
+	margin-right: 5px;
+}
+
+/* 削除 */
+.btn-view {
+	background-color: #888;
 }
 
 /* 編集 */
 .btn-edit {
-    background-color: #2e7d32;
+	background-color: #2e7d32;
 }
 
 /* 削除 */
 .btn-delete {
-    background-color: #A83E3E;
+	background-color: #A83E3E;
+}
+
+/* 削除 */
+.btn-create {
+	background-color: #0000EE;
 }
 
 
-.btn-edit:hover, .btn-delete:hover {
-    opacity: 0.8;
+.btn-edit:hover,
+.btn-view:hover,
+.btn-create:hover,
+.btn-delete:hover {
+	opacity: 0.8;
 }

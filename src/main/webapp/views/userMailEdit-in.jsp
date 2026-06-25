@@ -30,14 +30,18 @@
 				<input type="text" id="mailConfirm" name="mailConfirm" required>
 				<span id="mailConfirmM"></span>
 				<hr>
-				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
-
-				<script>
-				  const contextPath = "${pageContext.request.contextPath}";
-				</script>
-				<script src="${pageContext.request.contextPath}/js/duplicationChecker.js" defer></script>
 				<input type="submit" id="submitBtn" value="確認">
 			</form>
+			<script>
+				const contextPath = "${pageContext.request.contextPath}";
+			</script>
+			<script src="${pageContext.request.contextPath}/js/userValidation.js"></script>
+			<script>
+				setupValidation({
+				mailConfirm: true,
+				duplicate:true
+				});
+			</script>
 			<a href="${pageContext.request.contextPath}/UserMenu.action">会員情報ページへ戻る</a>
 			<hr>
 			<a href="${pageContext.request.contextPath}/Top.action">トップページへ戻る</a>

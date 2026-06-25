@@ -62,4 +62,59 @@ public class CategoryDAO extends DAO {
 		}
 		return list;
 	}
+	
+	public String findById(String id) throws Exception {
+		String name=null;
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("SELECT CATEGORY_NAME FROM category WHERE CATEGORY_ID=?");) {
+			ps.setString(1, id);
+			try (ResultSet rs = ps.executeQuery();) {
+				if (rs.next()) {
+					name=rs.getString("CATEGORY_NAME");
+				}
+			}
+		}
+		return name;
+	}
+	/*
+	 * 登録処理
+	 */
+	public int insert(Categorys category)throws Exception{
+		String sql="INSERT INTO category (CATEGORY_ID, CATEGORY_NAME) VALUES (?, ?)";
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql);){
+
+			ps.setString(1, category.getCategoryId());
+			ps.setString(2, category.getCategoryName());
+
+			return ps.executeUpdate();
+		}
+	}
+	/*
+	 * 更新処理
+	 */
+	public int update(String id, String name)throws Exception{
+		String sql="UPDATE category SET CATEGORY_NAME = ? WHERE CATEGORY_ID = ?";
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql);){
+
+			ps.setString(1, name);
+			ps.setString(2, id);
+
+			return ps.executeUpdate();
+		}
+	}
+	/*
+	 * 削除処理
+	 */
+	public int delete(String id)throws Exception{
+		String sql="DELETE FROM category WHERE CATEGORY_ID = ?";
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql);){
+
+			ps.setString(1, id);
+
+			return ps.executeUpdate();
+		}
+	}
 }

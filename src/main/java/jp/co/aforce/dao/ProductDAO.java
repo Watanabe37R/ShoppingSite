@@ -124,7 +124,15 @@ public class ProductDAO extends DAO {
 	public Products findProductInfoById(String productId) throws Exception {
 
 		Products product = null;
-		String sql = "SELECT * FROM product WHERE PRODUCT_ID = ?";
+
+		String sql = "SELECT p.*, m.MAKER_NAME, c.CATEGORY_NAME, " +
+				"AVG(e.RATING) AS avg_rating, COUNT(e.RATING) AS review_count " +
+				"FROM product p " +
+				"JOIN maker m ON p.MAKER_ID = m.MAKER_ID " +
+				"JOIN category c ON p.CATEGORY_ID = c.CATEGORY_ID " +
+				"LEFT JOIN evaluation e ON p.PRODUCT_ID = e.PRODUCT_ID " +
+				"WHERE p.PRODUCT_ID = ? " +
+				"GROUP BY p.PRODUCT_ID, m.MAKER_NAME, c.CATEGORY_NAME";
 
 		try (Connection con = getConnection();
 				PreparedStatement ps = con.prepareStatement(sql)) {
@@ -132,17 +140,34 @@ public class ProductDAO extends DAO {
 
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					product = new Products();
-					product.setProductId(rs.getString("PRODUCT_ID"));
-					product.setProductName(rs.getString("PRODUCT_NAME"));
-					product.setPrice(rs.getInt("PRICE"));
-					product.setMakerId(rs.getString("MAKER_ID"));
-					//product.setTaxClass(rs.getInt("TAX_CLASS"));
-					//product.setTax(rs.getInt("TAX"));
-					product.setCategoryId(rs.getString("CATEGORY_ID"));
-					product.setImageUrl(rs.getString("IMAGE_URL"));
-					//product.setOnSale(rs.getInt("ON_SALE") == 1);
-					//product.setStock(rs.getInt("STOCK"));
+				    product = new Products();
+				    product.setProductId(rs.getString("PRODUCT_ID"));
+				    product.setProductName(rs.getString("PRODUCT_NAME"));
+				    product.setMakerId(rs.getString("MAKER_ID"));
+				    product.setMakerName(rs.getString("MAKER_NAME"));
+				    product.setPrice(rs.getInt("PRICE"));
+				    product.setTaxClass(rs.getInt("TAX_CLASS"));
+				    product.setTax(rs.getInt("TAX"));
+				    product.setCategoryId(rs.getString("CATEGORY_ID"));
+				    product.setCategoryName(rs.getString("CATEGORY_NAME"));
+				    product.setAbstractText(rs.getString("ABSTRACT"));
+				    product.setImageUrl(rs.getString("IMAGE_URL"));
+				    product.setOnSale(rs.getBoolean("ON_SALE"));
+				    product.setStock(rs.getInt("STOCK"));
+
+				    product.setCreateDate(
+				        rs.getTimestamp("CREATE_DATE").toLocalDateTime());
+				    product.setUpdateDate(
+				        rs.getTimestamp("UPDATE_DATE").toLocalDateTime());
+
+				    // 評価
+				    double avg = rs.getDouble("avg_rating");
+				    if (rs.wasNull()) {
+				        avg = 0.0;
+				    }
+				    product.setAvgRating(avg);
+
+				    product.setReviewCount(rs.getInt("review_count"));
 				}
 			}
 		}
@@ -255,6 +280,17 @@ public class ProductDAO extends DAO {
 			ps.setString(1, productId);
 
 			ps.executeUpdate();
+		}
+	}
+
+	public boolean check(String id) throws Exception {
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(
+						"SELECT PRODUCT_ID FROM product WHERE PRODUCT_ID = ?");) {
+			ps.setString(1, id);
+			try (ResultSet rs = ps.executeQuery();) {
+				return rs.next();
+			}
 		}
 	}
 }

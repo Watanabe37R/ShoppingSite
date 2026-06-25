@@ -41,12 +41,21 @@
 				<p>住所<input type="text" id="address" name="address" value="${setUser.address}" required></p>
 				<span id="addressM"></span>
 				<input type="submit" id="submitBtn" value="次へ">
-				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
 
 				<script>
-				  const contextPath = "${pageContext.request.contextPath}";
+					const contextPath = "${pageContext.request.contextPath}";
 				</script>
-				<script src="${pageContext.request.contextPath}/js/duplicationChecker.js" defer></script>
+				<script src="${pageContext.request.contextPath}/js/userValidation.js"></script>
+				<script>
+					setupValidation({
+					id: true,
+					mailConfirm: true,
+					pwConfirm:true,
+					name:true,
+					address:true,
+					duplicate:true
+					});
+				</script>
 			</form>
 		</Div>
 	</main>

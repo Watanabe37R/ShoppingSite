@@ -29,11 +29,18 @@
 				<br>住所<br>
 				<input type="text" id="address" name="address" value="${userInfo.address}" required>
 				<span id="addressM"></span>
-				<script src="${pageContext.request.contextPath}/js/userValidation.js" defer></script>
 				<br>
 				<hr>
 				<input type="submit" id="submitBtn" value="確認">
 			</form>
+			
+			<script src="${pageContext.request.contextPath}/js/userValidation.js"></script>
+			<script>
+				setupValidation({
+				name:true,
+				address:true
+				});
+			</script>
 			<a href="${pageContext.request.contextPath}/UserMenu.action">会員情報ページへ戻る</a>
 			<hr>
 			<a href="${pageContext.request.contextPath}/Top.action">トップページへ戻る</a>

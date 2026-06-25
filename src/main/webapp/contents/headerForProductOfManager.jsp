@@ -7,26 +7,24 @@
 
 <%--中央：検索(管理者専用)--%>
 <div class="search">
-	<c:if
-		test="${empty sessionScope.loginuser || sessionScope.loginuser.manager != 1}">
-		<form action="${pageContext.request.contextPath}/ManagerProductList.action" method="get">
-			<select name="categoryId">
-				<option value=""
-				${empty selectedCategory ? 'selected' : ''}>
-				すべて
+	<form action="${pageContext.request.contextPath}/ManagerProductList.action" method="get">
+		<select name="categoryId">
+			<option value=""
+			${empty selectedCategory ? 'selected' : ''}>
+			すべて
+			</option>
+		
+			<c:forEach var="c" items="${applicationScope.categoryList}">
+				<option value="${c.categoryId}"
+				${c.categoryId == selectedCategory ? 'selected ' : ''}>
+				${c.categoryName}
 				</option>
-			
-				<c:forEach var="c" items="${applicationScope.categoryList}">
-					<option value="${c.categoryId}"
-					${c.categoryId == selectedCategory ? 'selected ' : ''}>
-					${c.categoryName}
-					</option>
-				</c:forEach>
-			</select>
-			<input type="text" name="keyword" value="${keyword}">
-			<input type="submit" value="検索">
-		</form>
-	</c:if>
+			</c:forEach>
+		</select>
+		<input type="text" id="search" name="keyword" value="${keyword}">
+		<input type="submit" value="検索">
+	</form>
+	<script src="${pageContext.request.contextPath}/js/searchValidation.js" defer></script>
 </div>
 
 <%--ユーザー名+メニュー--%>
