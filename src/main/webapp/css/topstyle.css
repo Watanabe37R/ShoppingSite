@@ -16,3 +16,117 @@ main {
 	padding: 20px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+/* ===== ヒーロー ===== */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 120px 20px;
+    border-radius: 20px;
+
+    /* ここが重要：グラデ強化 */
+    background: linear-gradient(135deg, #5f9cff, #22d3ee);
+
+    color: white;
+    text-align: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* うっすら装飾（プロ感出る） */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    top: -80px;
+    right: -80px;
+}
+
+/* 内側 */
+.hero-inner {
+    max-width: 600px;
+}
+
+/* タイトル */
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+/* キャッチ */
+.catch {
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+/* サブ */
+.sub {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* ボタン（ここかなり重要） */
+.hero-btn {
+    display: inline-block;
+    padding: 14px 30px;
+
+    border-radius: 30px;
+    background: white;
+    color: #2c7be5;
+
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: 0.2s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ホバーで気持ちよく */
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+.hero {
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero {
+    background:
+        linear-gradient(135deg, #5f9cff, #22d3ee),
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2), transparent 40%);
+}
+
+/* ===== 管理者用カラー ===== */
+.admin-hero {
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+}
+
+/* ボタンも管理者用 */
+.admin-btn {
+    background: #ffffff;
+    color: #2c3e50;
+}
+
+/* hoverを少し堅めに */
+.admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}

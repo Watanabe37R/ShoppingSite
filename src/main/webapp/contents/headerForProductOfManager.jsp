@@ -31,7 +31,6 @@
 <div class="contents">
 	<span class="user-name"> ようこそ、${loginuser.lastName}さん </span>
 	<div class="menu">
-		<a href="#">お知らせ</a>
 		<a href="${pageContext.request.contextPath}/views/managerMaster-menu.jsp">管理情報</a>
 		<a href="${pageContext.request.contextPath}/views/logout-in.jsp" class="btn-highlight">ログアウト</a>
 	</div>

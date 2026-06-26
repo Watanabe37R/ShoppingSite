@@ -58,7 +58,7 @@
 						<div class="form-row">
 							<label>内容</label>
 							<Textarea id="content" name="content">${notice.content}</Textarea>
-							<span id="contentsM"></span>
+							<span id="contentM"></span>
 						</div>
 						<div class="form-row">
 							<label>お知らせタイプ</label>
@@ -104,8 +104,13 @@
 							<input type="date" name="end" value="${notice.endStr}">
 						</div>
 					</div>
-					<input type="submit" class="${mode == 'create' ? 'create' : 'update'}" value="${mode == 'create' ? '登録' : '更新'}">
+					<input type="submit" id="submitBtn" class="${mode == 'create' ? 'btn register-btn' : 'btn edit-btn'}" value="${mode == 'create' ? '登録' : '更新'}">
 				</form>
+					<script
+						src="${pageContext.request.contextPath}/js/noticeValidation.js"></script>
+					<script>
+						setupValidationByMode();
+					</script>
 			</c:when>
 			<c:otherwise>
 				<div class="top-bar">
@@ -163,7 +168,7 @@
 						</div>
 					</div>
 					<c:if test="${mode == 'delete'}">
-						<input type="submit" value="削除">
+						<input type="submit" value="削除" class="btn delete-btn" onclick="return confirm('本当に削除しますか？');">
 					</c:if>
 				</form>
 			</c:otherwise>

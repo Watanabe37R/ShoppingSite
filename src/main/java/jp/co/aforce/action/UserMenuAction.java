@@ -17,10 +17,14 @@ public class UserMenuAction extends Action {
 		HttpSession session = request.getSession();
 		Users user = (Users) session.getAttribute("loginuser");
 		//DAOにアクセスしてIDに紐づく履歴を取得
-		OrderDAO dao=new OrderDAO();		
-		List<Orders> list = dao.getOrders(user.getMemberId());		
-		request.setAttribute("orderList", list);
-		return "user-menu.jsp";
+		try {
+			OrderDAO dao = new OrderDAO();
+			List<Orders> list = dao.getOrders(user.getMemberId());
+			request.setAttribute("orderList", list);
+			return "user-menu.jsp";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
-
 }

@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/topstyle.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/headerStyle.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/topstyle.css">
+
 <!DOCTYPE html>
 <html>
 <head>

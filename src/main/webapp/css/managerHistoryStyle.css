@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+/* ===== 全体 ===== */
+body {
+	margin: 0;
+	font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+	background: linear-gradient(0deg, #eef6fb, #dbe9f4);
+	padding: 20px;
+}
+
+/* ===== メインエリア ===== */
+main {
+	margin-top: 20px;
+	background: white;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-upper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin-bottom: 15px;
+}
+
+/* タイトル中央寄せっぽく見せる */
+.main-upper h2 {
+	margin: 0;
+	font-size: 20px;
+	color: #006d99;
+	flex-grow: 1;
+	text-align: center;
+}
+
+/* ボタン */
+.main-upper button {
+	padding: 6px 12px;
+	border: none;
+	border-radius: 6px;
+	background: #0077aa;
+	color: white;
+	cursor: pointer;
+}
+
+.main-upper button:hover {
+	background: #005f88;
+}
+
+.mode-label {
+	font-size: 25px;
+	min-width: 50px;
+	text-align: right;
+	font-weight: bold;
+}
+
+/* 編集モード */
+.mode-label.edit {
+	color: #2e7d32;
+	;
+}
+
+/* 閲覧モード */
+.mode-label.view {
+	color: #000000;
+}
+
+/* ===== 履歴エリア ===== */
+.order-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px;
+	background: white;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+/* ヘッダ */
+.order-table th {
+	background: #0077aa;
+	color: white;
+	text-align: left;
+	padding: 10px;
+	font-size: 13px;
+}
+
+/* 行 */
+.order-table td {
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+	font-size: 13px;
+}
+
+/* 最後の行 */
+.order-table tr:last-child td {
+	border-bottom: none;
+}
+
+/* ホバー */
+.order-table tbody tr:hover {
+	background: #f5f9fc;
+}
+
+/* 日付リンク */
+.order-table .date-link {
+	color: #0077aa;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.order-table .date-link:hover {
+	text-decoration: underline;
+}

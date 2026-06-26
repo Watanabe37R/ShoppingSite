@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/CartListStyle.css">
+	href="${pageContext.request.contextPath}/css/historyStyle.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/headerStyle.css">
 <%@taglib prefix="c" uri="jakarta.tags.core"%>

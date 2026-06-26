@@ -51,12 +51,14 @@ public class ManagerNoticeProcessAction extends Action {
 		notice.setDisplay(display);
 		notice.setStart(start);
 		notice.setEnd(end);
-		//バリデーション
-		//errors=validate.noticeValidate(notice);
-		//エラーがある場合エラー画面へ
-		if (!errors.isEmpty()) {
-			request.setAttribute("errors", errors);
-			return "master-error.jsp";
+		if ("imsert".equals(mode) || "update".equals(mode)) {
+			//バリデーション
+			errors = validate.noticeValidate(notice);
+			//エラーがある場合エラー画面へ
+			if (!errors.isEmpty()) {
+				request.setAttribute("errors", errors);
+				return "master-error.jsp";
+			}
 		}
 		if ("insert".equals(mode)) {
 			try {
@@ -66,7 +68,8 @@ public class ManagerNoticeProcessAction extends Action {
 					request.setAttribute("errors", errors);
 					return "master-error.jsp";
 				}
-				
+				response.sendRedirect("ManagerNotice.action?mode=view&id=" + newId);
+				return null;
 			} catch (Exception e) {
 				e.printStackTrace();
 				errors.add("システムエラーが発生しました。<br>操作をやり直してください。");
@@ -107,7 +110,7 @@ public class ManagerNoticeProcessAction extends Action {
 				return "master-error.jsp";
 			}
 		}
-		response.sendRedirect("ManagerNotice.action?view=" + id);
+		response.sendRedirect("ManagerNoticezList.action");
 		return null;
 	}
 

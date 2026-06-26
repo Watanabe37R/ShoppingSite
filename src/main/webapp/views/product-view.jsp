@@ -53,16 +53,18 @@
 					<!-- 購入エリア -->
 					<form class="buy-box"
 						  action="${pageContext.request.contextPath}/CartAdd.action"
-						  method="post">
+						  method="post" onsubmit="saveState()">
 						<input type="hidden" name="productId" value="${products.productId}">
 						<label>数量</label>
 						<select name="quantity">
-							<c:forEach begin="1" end="20" var="i">
+							<c:forEach begin="1" end="${products.stock}" var="i">
 								<option value="${i}">${i}</option>
 							</c:forEach>
 						</select>
 						<input type="submit" value="カートに追加">
 					</form>
+						<script src="${pageContext.request.contextPath}/js/toastView.js"></script>
+					<div id="toast" class="toast">追加しました</div>
 				</div>
 			</div>
 			<!-- 下段 -->

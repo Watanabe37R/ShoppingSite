@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/accountstyle.css">
 <link rel="stylesheet"
@@ -31,7 +32,7 @@
 			<h3>利用履歴</h3>
 			<div class="history-empty">
 				<c:forEach var="o" items="${orderList}">
-					<div class="cart-item">
+					<span class="status">
 						<c:choose>
 							<c:when test="${o.status == 0}">注文済</c:when>
 							<c:when test="${o.status == 1}">支払済</c:when>
@@ -40,14 +41,10 @@
 							<c:when test="${o.status == 9}">キャンセル済み</c:when>
 							<c:otherwise>完了</c:otherwise>
 						</c:choose>
-						<div class="item-info">
-							<div>
-								<a href="${pageContext.request.contextPath}/UserOrderHistory.action?mode=history&orderId=${o.orderId}">
-								<fmt:formatDate value="${o.orderDate}" pattern="yyyy/MM/dd HH:mm"/>
-								</a>
-							</div>
-						</div>
-					</div>
+					</span>
+						<a class="date-link" href="${pageContext.request.contextPath}/UserOrderHistory.action?mode=history&orderId=${o.orderId}">
+							<fmt:formatDate value="${o.orderDateTs}" pattern="yyyy/MM/dd HH:mm"/>
+						</a>
 				</c:forEach>
 			</div>
 		</div>

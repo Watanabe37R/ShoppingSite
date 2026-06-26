@@ -1,8 +1,10 @@
 package jp.co.aforce.validator;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.co.aforce.bean.Notices;
 import jp.co.aforce.bean.Products;
 
 public class MasterValidator {
@@ -21,12 +23,19 @@ public class MasterValidator {
 		return name != null && (name.matches(".*[<>\"'&].*") || name.length() > 32);
 	}
 
-	public boolean isAbstractInputValid(String name) {
+	public boolean is1000InputValid(String name) {
 		return name != null && (name.matches(".*[<>\"'&].*") || name.length() > 1000);
 	}
 
-	public boolean isImageURLInputValid(String name) {
+	public boolean is128InputValid(String name) {
 		return name != null && (name.matches(".*[<>\"'&].*") || name.length() > 128);
+	}
+
+	public boolean isNoticeTypeValid(String name) {
+	    return !(name != null &&
+	           (name.equals("重要") ||
+	            name.equals("キャンペーン") ||
+	            name.equals("通常")));
 	}
 
 	public boolean isIntegerInputvalid(int i) {
@@ -34,6 +43,46 @@ public class MasterValidator {
 			return true;
 		}
 		return false;
+	}
+
+	public List<String> noticeValidate(Notices notice) {
+		List<String> errors = new ArrayList<>();
+		String title = notice.getTitle();
+		String content = notice.getContent();
+		String noticeType = notice.getNoticeType();
+		int displyay = notice.getDisplay();
+		LocalDateTime start = notice.getStart();
+		LocalDateTime end = notice.getEnd();
+		boolean titleError = title == null || title.isEmpty();
+		boolean contentError = content == null || content.isEmpty();
+		boolean noticeTypeError = noticeType == null || noticeType.isEmpty();
+		boolean startError = start == null;
+		boolean endError = end == null;
+
+		//String系nullチェック
+		if (titleError || contentError || noticeTypeError || startError || endError) {
+			errors.add("必須項目に未入力があります。");
+		}
+		//タイトル
+		if (is128InputValid(title)) {
+			errors.add("使用できない文字が含まれているか、文字数規定違反です。<br>タイトルに入力できる文字は128文字以内かつ一部の記号のみです。");
+		}
+
+		//本文(内容)
+		if (is1000InputValid(content)) {
+			errors.add("使用できない文字が含まれているか、文字数規定違反です。<br>本文に入力できる文字は1000文字以内かつ一部の記号のみです。");
+		}
+		//ラジオボタン(種別)
+		if (isNoticeTypeValid(noticeType)) {
+			errors.add("入力パターン違反です。");
+		}
+		//表示区分
+		if (isRagioInputValid(displyay)) {
+			errors.add("表示区分が不正です。");
+		}
+		//データ
+
+		return errors;
 	}
 
 	public List<String> validateIdAndName(String id, String name) {
@@ -75,8 +124,11 @@ public class MasterValidator {
 		boolean categoryIdError = categoryId == null || categoryId.isEmpty();
 
 		//String系nullチェック
-		if (productIdError || productNameError || makerIdError || categoryIdError) {
+		if (productIdError || productNameError) {
 			errors.add("必須項目に未入力があります。");
+		}
+		if(makerIdError || categoryIdError) {
+			errors.add("転送項目がnullです。");
 		}
 		//ID入力値チェック(10文字以下＋英数)
 		if (isIdInputValid(productId) || isIdInputValid(makerId) || isIdInputValid(categoryId)) {
@@ -99,11 +151,11 @@ public class MasterValidator {
 			errors.add("税率に入力できるのは、0～127までの整数です。");
 		}
 		//画像
-		if (isImageURLInputValid(imageUrl)) {
+		if (is128InputValid(imageUrl)) {
 			errors.add("使用できない文字が含まれているか、文字数規定違反です。<br>画像ファイルに指定できる文字は128文字以内かつ一部の記号のみです。");
 		}
 		//摘要
-		if (isAbstractInputValid(abstractText)) {
+		if (is1000InputValid(abstractText)) {
 			errors.add("使用できない文字が含まれているか、文字数規定違反です。<br>商品名に入力できる文字は1000文字以内かつ一部の記号のみです。");
 		}
 		return errors;

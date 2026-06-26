@@ -195,7 +195,11 @@
 						<div class="button-area">					
 							<input type="hidden" name="processMode" value="${mode == 'edit' ? 'update' : mode == 'delete' ? 'deleteExecute' : 'insert'}">				
 							<button type="submit" id="submitBtn" name="mode" 				
-							class="${mode == 'edit' ? 'edit-btn' : mode == 'delete' ? 'delete-btn' : 'register-btn'}">
+							class="${mode == 'edit' ? 'edit-btn' : mode == 'delete' ? 'delete-btn ' : 'register-btn'}"
+							<c:if test="${mode == 'delete'}">
+								onclick="return confirm('本当に削除しますか？')"
+							</c:if>
+							>
 							${mode == 'edit' ? '更新' : mode == 'delete' ? '削除' : '登録'}</button>				
 						</div>					
 					</c:if>						

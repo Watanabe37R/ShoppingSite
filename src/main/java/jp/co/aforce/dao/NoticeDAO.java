@@ -11,7 +11,7 @@ import java.util.List;
 import jp.co.aforce.bean.Notices;
 
 public class NoticeDAO extends DAO {
-	public List<Notices> findAll() throws Exception {
+	public List<Notices> findAllForCustomer() throws Exception {
 		List<Notices> list = new ArrayList<>();
 		String SQL = """
 				SELECT * FROM notice
@@ -56,6 +56,49 @@ public class NoticeDAO extends DAO {
 		return list;
 	}
 
+
+	public List<Notices> findAll() throws Exception {
+		List<Notices> list = new ArrayList<>();
+		String SQL = """
+				SELECT * FROM notice
+				ORDER BY
+				CASE
+				  WHEN NOTICE_TYPE = '重要' THEN 1
+				  WHEN NOTICE_TYPE = 'キャンペーン' THEN 2
+				  ELSE 3
+				END,
+				CREATE_DATE DESC
+								""";
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(SQL);) {
+			try (ResultSet rs = ps.executeQuery()) {
+				while (rs.next()) {
+					Notices notice = new Notices();
+					notice.setId(rs.getInt("NOTICE_ID"));
+					notice.setTitle(rs.getString("TITLE"));
+					notice.setContent(rs.getString("CONTENT"));
+					notice.setNoticeType(rs.getString("NOTICE_TYPE"));
+					String displayStr = (rs.getString("DISPLAY_FLAG"));
+					notice.setDisplay(Integer.parseInt(displayStr));
+					notice.setStart(
+							rs.getTimestamp("START_DATE") != null
+									? rs.getTimestamp("START_DATE").toLocalDateTime()
+									: null);
+					notice.setEnd(
+							rs.getTimestamp("END_DATE") != null
+									? rs.getTimestamp("END_DATE").toLocalDateTime()
+									: null);
+					notice.setCreate(
+							rs.getTimestamp("CREATE_DATE").toLocalDateTime());
+					notice.setUpdate(
+							rs.getTimestamp("UPDATE_DATE").toLocalDateTime());
+					list.add(notice);
+				}
+			}
+		}
+		return list;
+	}
+	
 	public Notices findById(int id) throws Exception {
 		Notices notice = new Notices();
 		String SQL = """

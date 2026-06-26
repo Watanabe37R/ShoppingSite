@@ -32,7 +32,7 @@ public class ProductDAO extends DAO {
 		if (keyword != null && !keyword.isEmpty()) {
 			String[] keywords = keyword.split(" ");
 			for (String k : keywords) {
-				sql += "AND (p.PRODUCT_NAME LIKE ? OR p.ABSTRACT LIKE ?) ";
+				sql += "AND (p.PRODUCT_NAME LIKE ? OR p.ABSTRACT LIKE ? OR m.MAKER_NAME LIKE ?) ";
 			}
 			isKeyword = true;
 		}
@@ -62,6 +62,7 @@ public class ProductDAO extends DAO {
 				String[] keywords = keyword.split(" ");
 
 				for (String k : keywords) {
+					ps.setString(index++, "%" + k + "%");
 					ps.setString(index++, "%" + k + "%");
 					ps.setString(index++, "%" + k + "%");
 				}

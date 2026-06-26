@@ -121,3 +121,36 @@ main {
     overflow: hidden;
     white-space: nowrap;
 }
+
+/*吹き出しみたいなやつ(トースト)*/
+.toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 9999;
+}
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+.toast::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+

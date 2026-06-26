@@ -65,36 +65,41 @@
 				</c:if>
 			<div class="products">
 				<c:forEach var="p" items="${productList}">
-					<div class="card">
-						<div class="img"><a href="Product.action?productId=${p.productId}"><img src="${pageContext.request.contextPath}/${p.imageUrl}"></a></div>
-						<p><a href="Product.action?productId=${p.productId}">${p.productName}</a></p>
-						<p>${p.makerName}</p>
-						<c:choose>
-							<c:when test="${p.reviewCount == 0}">
-								<p><span class="stars" style="--rating: 0;"></span>(0件)</p>
-							</c:when>
-							<c:otherwise>
-								<p>
-								<span class="stars" style="--rating: ${p.avgRating};"></span>
-								<fmt:formatNumber value="${p.avgRating}" minFractionDigits="1" maxFractionDigits="1" />
-								（${p.reviewCount}件）
-								</p>
-							</c:otherwise>
-						</c:choose>
-						<p>
-							<fmt:formatNumber value="${p.price}" pattern="#,###" />円(税込)
-						</p>
-						<form action="${pageContext.request.contextPath}/CartAdd.action" method="post">
-							<input type="hidden" name="productId" value="${p.productId}">
-							<label>個数</label>
-							<select name="quantity">
-								<c:forEach begin="1" end="20" var="i">
-									<option value="${i}">${i}</option>
-								</c:forEach>
-							</select>
-							<input type="submit" value="カートに追加">
-						</form>
-					</div>
+					<c:if test="${p.stock > 0 && p.onSale}">
+						<div class="card">
+							<div class="img"><a href="Product.action?productId=${p.productId}"><img src="${pageContext.request.contextPath}/${p.imageUrl}"></a></div>
+							<p><a href="Product.action?productId=${p.productId}">${p.productName}</a></p>
+							<p>${p.makerName}</p>
+							<c:choose>
+								<c:when test="${p.reviewCount == 0}">
+									<p><span class="stars" style="--rating: 0;"></span>(0件)</p>
+								</c:when>
+								<c:otherwise>
+									<p>
+									<span class="stars" style="--rating: ${p.avgRating};"></span>
+									<fmt:formatNumber value="${p.avgRating}" minFractionDigits="1" maxFractionDigits="1" />
+									（${p.reviewCount}件）
+									</p>
+								</c:otherwise>
+							</c:choose>
+							<p>
+								<fmt:formatNumber value="${p.price}" pattern="#,###" />円(税込)
+							</p>
+							<form action="${pageContext.request.contextPath}/CartAdd.action" method="post" onsubmit="saveState()">
+								<input type="hidden" name="productId" value="${p.productId}">
+								<label>個数</label>
+								<select name="quantity">
+									<c:forEach begin="1" end="${p.stock}" var="i">
+										<option value="${i}">${i}</option>
+									</c:forEach>
+								</select>
+								<input type="submit" value="カートに追加">
+							</form>
+							<script src="${pageContext.request.contextPath}/js/toastView.js"></script>
+							<div id="toast" class="toast">追加しました</div>
+						</div>
+					</c:if>
+					
 				</c:forEach>
 			</div>
 		</div>

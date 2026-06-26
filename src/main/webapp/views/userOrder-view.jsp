@@ -24,10 +24,6 @@
 				</c:when>
 				<c:otherwise>
 					<div class="cart-left">
-						<div class="cart-item">
-							<p>支払方法</p>
-							<p>なんたらかんたら</p>
-						</div>
 						<c:forEach var="p" items="${cartList}">
 							<div class="cart-item">
 								<!-- 中：商品情報 -->

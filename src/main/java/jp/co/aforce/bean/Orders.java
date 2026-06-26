@@ -7,6 +7,7 @@ public class Orders implements Serializable {
 	private int orderId;
 	private String memberId;
 	private Timestamp orderDate;
+	private Timestamp orderDateTs;
 	private int status;
 
 	public int getOrderId() {
@@ -25,6 +26,10 @@ public class Orders implements Serializable {
 		return status;
 	}
 
+	public Timestamp getOrderDateTs() {
+		return orderDateTs;
+	}
+
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
@@ -41,4 +46,7 @@ public class Orders implements Serializable {
 		this.status = status;
 	}
 
+	public void setOrderDateTs(Timestamp orderDateTs) {
+		this.orderDateTs = orderDateTs;
+	}
 }

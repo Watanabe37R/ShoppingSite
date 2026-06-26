@@ -203,20 +203,47 @@ button.main:hover {
 /* ===== 履歴エリア ===== */
 .history-empty {
 	margin-top: 10px;
-	font-size: 13px;
-	color: #888;
 	background: #f5f9fc;
-	padding: 10px;
+	padding: 10px 14px;
 	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* 1行セット（status + link を1行扱い） */
+.history-empty > span.status {
+	display: inline-block;
+	min-width: 100px;
+	font-size: 13px;
+	color: #555;
 }
 
-.order-item a {
-    text-decoration: none;
-    color: #333;
+/* 行ラッパー的に扱う */
+.history-empty > span.status,
+.history-empty > a.date-link {
+	display: inline-flex;
+	align-items: center;
+}
+
+/* 擬似的に行を作る */
+.history-empty {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	row-gap: 8px;
+	column-gap: 10px;
+	align-items: center;
+}
+
+/* 日付リンク */
+main a.date-link {
+	color: rgb(255, 255, 255); 
+	background: linear-gradient(135deg, #0077aa, #004e6b);
+	text-decoration: none;
+	font-size: 14px;
+	text-align: right;
+}
+
+.date-link:hover {
+	text-decoration: underline;
 }

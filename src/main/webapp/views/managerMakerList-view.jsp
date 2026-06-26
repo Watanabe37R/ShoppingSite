@@ -115,7 +115,7 @@
 							value="${makerName}"> ${makerName}</td>
 						<td><a class="btn-view"
 							href="ManagerMakerList.action?mode=view" class="view">キャンセル</a>
-							<button class="btn-delete">
+							<button class="btn-delete" onclick="return confirm('本当に削除しますか？')">
 								削除</a></td>
 					</tr>
 				</table>

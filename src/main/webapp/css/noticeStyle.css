@@ -160,3 +160,56 @@ textarea {
     transform: translateY(1px);
 }
 
+/* ===== 共通ボタン ===== */
+.btn {
+    display: inline-block;
+    margin:  0;
+
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+
+    color: white;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* hover共通 */
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* active共通 */
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ===== 種類ごと ===== */
+
+/* 削除（赤） */
+.delete-btn {
+    background: #e74c3c;
+}
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+/* 更新（青） */
+.edit-btn {
+    background: #3498db;
+}
+.edit-btn:hover {
+    background: #2980b9;
+}
+
+/* 登録（緑） */
+.register-btn {
+    background: #2ecc71;
+}
+.register-btn:hover {
+    background: #27ae60;
+}
+

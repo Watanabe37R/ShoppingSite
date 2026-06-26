@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,11 +117,100 @@ public class OrderDAO extends DAO {
 					order.setOrderId(rs.getInt("ORDER_ID"));
 					order.setOrderDate(rs.getTimestamp("ORDER_DATE"));
 					order.setStatus(rs.getInt("STATUS"));
+					Timestamp ts = rs.getTimestamp("ORDER_DATE");
+					order.setOrderDateTs(ts);
 
 					list.add(order);
 				}
 			}
 		}
 		return list;
+	}
+
+	public List<Orders> getOrdersAll() throws Exception {
+		List<Orders> list = new ArrayList<>();
+
+		String sql = """
+				  SELECT
+				      MEMBER_ID,
+				      ORDER_ID,
+				      ORDER_DATE,
+				      STATUS
+				    FROM orders
+				    ORDER BY ORDER_DATE DESC
+				""";
+
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+
+			try (ResultSet rs = ps.executeQuery()) {
+
+				while (rs.next()) {
+					Orders order = new Orders();
+
+					order.setMemberId(rs.getString("MEMBER_ID"));
+					order.setOrderId(rs.getInt("ORDER_ID"));
+					order.setOrderDate(rs.getTimestamp("ORDER_DATE"));
+					order.setStatus(rs.getInt("STATUS"));
+					Timestamp ts = rs.getTimestamp("ORDER_DATE");
+					order.setOrderDateTs(ts);
+					list.add(order);
+				}
+			}
+		}
+		return list;
+	}
+	
+	public List<OrderDetails> getOrderDetailById(int oID) throws Exception {
+		List<OrderDetails> list = new ArrayList<>();
+
+		String sql = """
+				    SELECT
+				        o.MEMBER_ID,
+				        o.STATUS,
+				        od.PRODUCT_ID,
+				        p.PRODUCT_NAME,
+				        od.QUANTITY,
+				        od.PRICE,
+				        p.IMAGE_URL
+				    FROM order_detail od
+				    JOIN orders o ON od.ORDER_ID = o.ORDER_ID
+				    JOIN product p ON od.PRODUCT_ID = p.PRODUCT_ID
+				    WHERE od.ORDER_ID = ?
+				""";
+
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)) {
+
+			ps.setInt(1, oID);
+
+			try (ResultSet rs = ps.executeQuery()) {
+
+				while (rs.next()) {
+					OrderDetails item = new OrderDetails();
+
+					item.setMemberId(rs.getString("MEMBER_ID"));
+					item.setStatus(rs.getInt("STATUS"));
+					item.setProductId(rs.getString("PRODUCT_ID"));
+					item.setProductName(rs.getString("PRODUCT_NAME"));
+					item.setQuantity(rs.getInt("QUANTITY"));
+					item.setPrice(rs.getInt("PRICE"));
+					item.setImageUrl(rs.getString("IMAGE_URL"));
+
+					list.add(item);
+				}
+			}
+		}
+		return list;
+	}
+	
+	public int updateStatus(int status,int id)throws Exception{
+		String SQL="UPDATE orders SET STATUS = ? WHERE ORDER_ID=?";
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(SQL)) {
+			ps.setInt(1, status);
+			ps.setInt(2, id);
+			return ps.executeUpdate();
+		}
 	}
 }

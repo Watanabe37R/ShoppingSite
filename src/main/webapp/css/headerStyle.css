@@ -89,13 +89,13 @@
 }
 
 /* メニュー */
-.menu {
+header .menu {
 	display: flex;
 	gap: 10px;
 }
 
 /* リンクをボタン風 */
-.menu a {
+header .menu a {
 	padding: 6px 12px;
 	border-radius: 20px;
 	background: rgba(255, 255, 255, 0.25);
@@ -106,18 +106,18 @@
 	transition: 0.2s;
 }
 
-.menu a:hover {
+header .menu a:hover {
 	background: rgba(255, 255, 255, 0.45);
 }
 
 /* 強調したいボタン類 */
-.menu .btn-highlight {
+header .menu .btn-highlight {
 	background: rgb(252, 197, 95);
 	color: #0077aa;
 	text-shadow: none; 
 	font-weight: bold;
 }
 
-.menu .btn-highlight:hover {
+header .menu .btn-highlight:hover {
 	background: rgb(251, 167, 11);
 }

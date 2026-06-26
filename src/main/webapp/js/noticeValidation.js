@@ -1,16 +1,16 @@
 /**
  * 
  */
-const id = document.getElementById("id");
-const idM = document.getElementById("idM");
-const nameInput = document.getElementById("name");
-const nameM = document.getElementById("nameM");
+const title = document.getElementById("title");
+const titleM = document.getElementById("titleM");
+const content = document.getElementById("content");
+const contentM = document.getElementById("contentM");
 const submitBtn = document.getElementById("submitBtn");
 // =====================
 // 正規表現
 // =====================
-const idRegex = /^[a-zA-Z0-9]{1,10}$/;
-const nameRegex = /^.{1,32}$/;
+const titleRegex = /^.{1,128}$/;
+const contentRegex = /^.{1,1000}$/;
 const noDangerousChars = /^[^<>"'&]+$/;
 //エラー定義
 function setError(el, msg) {
@@ -66,50 +66,43 @@ function setupValidation(config) {
 	// 各フィールド定義
 	// =========================
 	//IDチェック
-	if (config.id) {
-		initField("id", (el, msg, state, touched) => {
+	if (config.title) {
+		initField("title", (el, msg, state, touched) => {
 			const v = el.value.trim();
 			if (v === "") {
 				clearError(msg);
-				state.id = false;
-			} else if (!idRegex.test(v)) {
-				if (touched) setError(msg, "IDは1〜10文字の半角英数字で入力してください");
-				state.id = false;
+				state.title = false;
+			} else if (!titleRegex.test(v) || !noDangerousChars.test(v)) {
+				if (touched) setError(msg, "1〜128文字で入力してください。一部使用できない記号があります。");
+				state.title = false;
 			} else {
 				clearError(msg);
-				state.id = true;
+				state.title = true;
 			}
-		}, { input: id, message: idM });
+		}, { input: title, message: titleM });
 	}
 
 	//Nameチェック
-	if (config.nameInput) {
-		initField("nameInput", (el, msg, state, touched) => {
+	if (config.content) {
+		initField("content", (el, msg, state, touched) => {
 			const v = el.value.trim();
 			if (v === "") {
 				clearError(msg);
-				state.nameInput = false;
-			} else if (!nameRegex.test(v) || !noDangerousChars.test(v)) {
-				if (touched) setError(msg, "1〜32文字で入力してください。一部使用できない記号があります。");
-				state.nameInput = false;
+				state.content = false;
+			} else if (!contentRegex.test(v) || !noDangerousChars.test(v)) {
+				if (touched) setError(msg, "1〜1000文字で入力してください。一部使用できない記号があります。");
+				state.content = false;
 			} else {
 				clearError(msg);
-				state.nameInput = true;
+				state.content = true;
 			}
-		}, { input: nameInput, message: nameM });
+		}, { input: content, message: contentM });
 	}
 }
 
-function setupValidationByMode(mode) {
-	if (mode === "create") {
-		setupValidation({
-			id: true,
-			nameInput: true
-		});
-
-	} else if (mode === "edit") {
-		setupValidation({
-			nameInput: true
-		});
-	}
+function setupValidationByMode() {
+	setupValidation({
+		title: true,
+		content: true
+	});
 }

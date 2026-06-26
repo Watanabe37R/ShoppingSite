@@ -42,66 +42,73 @@ public class ManagerProductProcessAction extends Action {
 			product.setMakerName(request.getParameter("makerName"));
 			String priceStr = request.getParameter("price");
 			if (priceStr != null && !priceStr.isEmpty()) {
-			    try {
-			        product.setPrice(Integer.parseInt(priceStr));
-			    } catch (NumberFormatException e) {
-			        errors.add("価格は数値で入力してください。");
-			    }
+				try {
+					product.setPrice(Integer.parseInt(priceStr));
+				} catch (NumberFormatException e) {
+					errors.add("価格は数値で入力してください。");
+				}
 			} else {
-			    errors.add("価格が未入力です。");
+				errors.add("価格が未入力です。");
 			}
 			String taxClassStr = request.getParameter("taxClass");
 			if (taxClassStr != null && !taxClassStr.isEmpty()) {
-			    try {
-			        product.setTaxClass(Integer.parseInt(taxClassStr));
-			    } catch (NumberFormatException e) {
-			        errors.add("税率は数値で入力してください。");
-			    }
+				try {
+					product.setTaxClass(Integer.parseInt(taxClassStr));
+				} catch (NumberFormatException e) {
+					errors.add("税率は数値で入力してください。");
+				}
 			} else {
-			    errors.add("税率区分が未入力です。");
+				errors.add("税率区分が未入力です。");
 			}
 			String taxStr = request.getParameter("tax");
 			if (taxStr != null && !taxStr.isEmpty()) {
-			    try {
-			        product.setTax(Integer.parseInt(taxStr));
-			    } catch (NumberFormatException e) {
-			        errors.add("税率は数値で入力してください。");
-			    }
+				try {
+					product.setTax(Integer.parseInt(taxStr));
+				} catch (NumberFormatException e) {
+					errors.add("税率は数値で入力してください。");
+				}
 			} else {
-			    errors.add("税率が未入力です。");
+				errors.add("税率が未入力です。");
 			}
 			product.setCategoryId(request.getParameter("categoryId"));
 			product.setCategoryName(request.getParameter("categoryName"));
 			product.setAbstractText(request.getParameter("abstractText"));
 			String isOnSaleParam = request.getParameter("isOnSale");
 			if (!"0".equals(isOnSaleParam) && !"1".equals(isOnSaleParam)) {
-			    errors.add("販売状態が不正です。");
+				errors.add("販売状態が不正です。");
 			}
 			product.setOnSale("1".equals(isOnSaleParam));
 			String stockStr = request.getParameter("stock");
 			if (stockStr != null && !stockStr.isEmpty()) {
-			    try {
-			        product.setStock(Integer.parseInt(stockStr));
-			    } catch (NumberFormatException e) {
-			        errors.add("税率は数値で入力してください。");
-			    }
+				try {
+					product.setStock(Integer.parseInt(stockStr));
+				} catch (NumberFormatException e) {
+					errors.add("税率は数値で入力してください。");
+				}
 			} else {
-			    errors.add("税率が未入力です。");
+				errors.add("税率が未入力です。");
+			}
+			if ("insert".equals(mode)) {
+				product.setProductId(request.getParameter("productId"));
+			} else if ("update".equals(mode)) {
+				product.setProductId(productId);
+			}
+
+			//バリデーション
+			errors.addAll(validate.productValidate(product));
+			//エラーがある場合エラー画面へ
+			if (!errors.isEmpty()) {
+				request.setAttribute("errors", errors);
+				return "master-error.jsp";
 			}
 		}
-		//バリデーション
-		errors.addAll(validate.productValidate(product));
-		//エラーがある場合エラー画面へ
-		if (!errors.isEmpty()) {
-			request.setAttribute("errors", errors);
-			return "master-error.jsp";
-		}
+
 		ProductDAO dao = new ProductDAO();
 		if ("insert".equals(mode)) {
 			// 登録
 			try {
 				dao.insertProduct(product);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				errors.add("システムエラーが発生しました。<br>操作をやり直してください");
 				request.setAttribute("errors", errors);

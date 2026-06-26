@@ -9,6 +9,8 @@ public class OrderDetails implements Serializable {
 	private int quantity;
 	private int price;
 	private String imageUrl;
+	private String memberId;
+	private int status;
 
 	public int getOrderId() {
 		return orderId;
@@ -34,6 +36,14 @@ public class OrderDetails implements Serializable {
 		return imageUrl;
 	}
 
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
@@ -56,6 +66,14 @@ public class OrderDetails implements Serializable {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

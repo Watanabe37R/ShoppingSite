@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@charset "UTF-8";
 
 /* ===== 全体 ===== */
 body {
@@ -19,18 +20,14 @@ main {
 
 .cart-container {
     display: flex;
+	flex-direction: column;
     gap: 20px;
 }
 
+/* 左側 */
 .cart-left {
     flex: 3;
 }
-
-.cart-right {
-    flex: 1;
-    min-width: 300px;
-}
-
 
 /* 商品カード */
 .cart-item {
@@ -158,53 +155,5 @@ select {
     border: 1px solid #ccc;
     border-radius: 6px;
     background: white;
-}
-
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 20px;
-}
-
-/* タイトル */
-.page-header h2 {
-    margin: 0;
-    font-size: 22px;
-}
-
-/* ボタンエリア */
-.actions {
-    display: flex;
-    gap: 10px;
-}
-
-/* 共通ボタン */
-.btn {
-    padding: 8px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    color: white;
-    transition: 0.2s;
-}
-
-/* モード変更（青） */
-.switch-btn {
-    background: #3498db;
-}
-
-.switch-btn:hover {
-    background: #2980b9;
-}
-
-/* 戻る（グレー） */
-.back-btn {
-    background: #95a5a6;
-}
-
-.back-btn:hover {
-    background: #7f8c8d;
 }
 

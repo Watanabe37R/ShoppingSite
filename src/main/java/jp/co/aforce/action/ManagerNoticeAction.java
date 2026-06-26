@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import jp.co.aforce.bean.Notices;
 import jp.co.aforce.dao.NoticeDAO;
-import jp.co.aforce.validator.MasterValidator;
 
 public class ManagerNoticeAction extends Action {
 
@@ -16,13 +15,11 @@ public class ManagerNoticeAction extends Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String mode = request.getParameter("mode");
 		String idStr = request.getParameter("id");
-		System.out.println(mode);
 		int id = 0;
 		if (idStr != null && !idStr.isEmpty()) {
 			id = Integer.parseInt(idStr);
 		}
 		List<String> errors = new ArrayList<>();
-		MasterValidator validate = new MasterValidator();
 		NoticeDAO dao = new NoticeDAO();
 		Notices notice = new Notices();
 
