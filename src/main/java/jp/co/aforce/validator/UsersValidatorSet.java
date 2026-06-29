@@ -67,6 +67,7 @@ public class UsersValidatorSet {
 							+ "<br>違うメールアドレスを使用してください");
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 				errors.add("システムエラーが発生しました。"
 						+ "<br>時間をおいて再度お試しください。");
 			}

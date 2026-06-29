@@ -89,7 +89,7 @@
 								<input type="hidden" name="productId" value="${p.productId}">
 								<label>個数</label>
 								<select name="quantity">
-									<c:forEach begin="1" end="${p.stock}" var="i">
+									<c:forEach begin="1" end="${p.stock > 20 ? 20 : p.stock}" var="i">
 										<option value="${i}">${i}</option>
 									</c:forEach>
 								</select>

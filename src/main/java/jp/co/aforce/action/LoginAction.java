@@ -37,7 +37,7 @@ public class LoginAction extends Action {
 		Users loginuser = dao.search(id, pw);
 
 		boolean force = "true".equals(request.getParameter("force"));
-		if (loginuser != null) {
+		if (loginuser != null && loginuser.getDeleted() == 0) {
 			if (UserFrontController.usersSession.containsKey(id)) {
 				//旧セッション
 				HttpSession oldSession = UserFrontController.usersSession.get(id);

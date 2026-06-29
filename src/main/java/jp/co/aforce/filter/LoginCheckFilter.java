@@ -52,7 +52,8 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		}
 
 		// ログイン画面は通す
-		if (sp.equals("/views/login-in.jsp") || sp.startsWith("/Login")) {
+		if (sp.equals("/views/login-in.jsp") || sp.startsWith("/Login") 
+				|| sp.startsWith("/views/userDelete-out.jsp")|| sp.startsWith("/UserDelete")) {
 			chain.doFilter(request, response);
 			return;
 		}

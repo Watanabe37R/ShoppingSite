@@ -36,7 +36,6 @@ public class RegistrationCheckAction extends Action {
 			request.setAttribute("errors", errors);
 			return "registration-error.jsp";
 		}
-
 		// 正常(登録確認画面へ)
 		request.setAttribute("setUser", setUser);
 		return "registration-check.jsp";

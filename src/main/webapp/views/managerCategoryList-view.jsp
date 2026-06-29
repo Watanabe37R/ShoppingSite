@@ -71,7 +71,7 @@
 							id="idM"></span></td>
 						<td><input type="text" id="name" name="categoryName"> <span
 							id="nameM"></span></td>
-						<td><button id="submitBtn" class="btn-create">新規登録</button> <a
+						<td><button id="submitBtn" class="btn-create" onclick="return confirm('新たにデータを登録してよろしいですか？')">新規登録</button> <a
 							class="btn-view" href="ManagerCategoryList.action?mode=view"
 							class="view">キャンセル</a></td>
 					</tr>
@@ -92,7 +92,7 @@
 							${categoryId}</td>
 						<td><input type="text" id="name" name="categoryName"
 							value="${categoryName}"> <span id="nameM"></span></td>
-						<td><button id="" class="btn-edit">更新</button> <a
+						<td><button id="" class="btn-edit" onclick="return confirm('データを更新しますか？')">更新</button> <a
 							class="btn-view" href="ManagerCategoryList.action?mode=view"
 							class="view">キャンセル</a></td>
 					</tr>

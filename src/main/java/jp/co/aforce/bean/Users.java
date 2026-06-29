@@ -8,6 +8,7 @@ public class Users implements java.io.Serializable {
 	private String address;
 	private String mailAddress;
 	private int manager;
+	private int deleted;
 
 	public String getMemberId() {
 		return memberId;
@@ -37,6 +38,10 @@ public class Users implements java.io.Serializable {
 		return manager;
 	}
 
+	public int getDeleted() {
+		return deleted;
+	}
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
@@ -63,5 +68,9 @@ public class Users implements java.io.Serializable {
 
 	public void setManager(int manager) {
 		this.manager = manager;
+	}
+
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
 	}
 }

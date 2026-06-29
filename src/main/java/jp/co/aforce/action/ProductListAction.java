@@ -41,8 +41,16 @@ public class ProductListAction extends Action {
 				categoryName = DAO.findById(categoryId);
 			}
 
+			int visibleCount = 0;
+			for (Products p : list) {
+				if (p.getStock() > 0 && p.isOnSale()) {
+					visibleCount++;
+				}
+			}
+			request.setAttribute("count", visibleCount);
+
 			request.setAttribute("productList", list);
-			request.setAttribute("count", list.size());
+			request.setAttribute("count", visibleCount);
 			request.setAttribute("keyword", keyword);
 			request.setAttribute("categoryName", categoryName);
 

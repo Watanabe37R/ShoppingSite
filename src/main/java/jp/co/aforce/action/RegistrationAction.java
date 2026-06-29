@@ -50,6 +50,7 @@ public class RegistrationAction extends Action {
 					return "registration-error.jsp";
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 				errors.add("システムエラーが発生しました。"
 						+ "<br>時間をおいて再度お試しください。");
 				request.setAttribute("errors", errors);
